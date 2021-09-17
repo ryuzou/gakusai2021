@@ -1,5 +1,5 @@
 # @Date:   2021-09-12T18:09:19+09:00
-# @Last modified time: 2021-09-14T19:59:44+09:00
+# @Last modified time: 2021-09-17T12:55:22+09:00
 
 
 
@@ -32,10 +32,41 @@ stop()
 try:
     while 1:
         #以下、入力に対して機体を動かすプログラム
+        #left,right,shot,radius,angle
+        if shot == 1:
+            shot()
+
+        if right + left == 1:
+            if left == 1:
+                left_rotation()
+            if right == 1:
+                right_rotation()
+
+        if radius <= 5:
+            straight()
+        elif radius <= 85:
+            right()
+        elif radius <= 95:
+            right_turn()
+        elif radius <= 175:
+            back_right()
+        elif radius <= 185:
+            back()
+        elif radius <= 265:
+            back_left()
+        elif radius <= 275:
+            left_turn()
+        elif radius <= 355:
+            left()
+        elif radius <= 360:
+            straight()
+
 
 except KeyboardInterrupt:
     GPIO.cleanup()
     exit()
+
+def shot():　#弾を撃つ
 
 def　right_rotation(): #砲塔の右旋回
     if pulse < 240:
