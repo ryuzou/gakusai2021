@@ -1,5 +1,5 @@
 # @Date:   2021-09-12T18:09:19+09:00
-# @Last modified time: 2021-09-17T12:55:22+09:00
+# @Last modified time: 2021-09-19T19:35:54+09:00
 
 
 
@@ -37,38 +37,26 @@ try:
             shot()
 
         if right + left == 1:
-            if left == 1:
-                left_rotation()
             if right == 1:
                 right_rotation()
+            if left == 1:
+                left_rotation()
 
-        if radius <= 5:
-            straight()
-        elif radius <= 85:
-            right()
-        elif radius <= 95:
-            right_turn()
-        elif radius <= 175:
-            back_right()
-        elif radius <= 185:
-            back()
-        elif radius <= 265:
-            back_left()
-        elif radius <= 275:
-            left_turn()
-        elif radius <= 355:
-            left()
-        elif radius <= 360:
-            straight()
+
+        if radius < ○○○ : #停止
+            stop()
+        else:
+            move() < ○○○ : #動く
 
 
 except KeyboardInterrupt:
     GPIO.cleanup()
     exit()
 
-def shot():　#弾を撃つ
+def shot(): #レーザーガン班
+    return
 
-def　right_rotation(): #砲塔の右旋回
+def right_rotation(): #砲塔の右旋回
     if pulse < 240:
         pulse += 19
         pi.set_PWM_dutycycle(19,pulse)
@@ -84,87 +72,60 @@ def left_rotation(): #砲塔の左旋回
 
 #dcモーター１が右前輪、dcモーター２が左前輪
 def stop():
-    rightMotorPwm.ChangeDutyCycle(0)
-    leftMotorPwm.ChangeDutyCycle(0)
-    time.sleep(0.1)
+        GPIO.output(22,GPIO.LOW)
+        GPIO.output(25,GPIO.LOW)
     return
 
-def straight():
-    rightMotorPwm.ChangeDutyCycle(100)
-    leftMotorPwm.ChangeDutyCycle(100)
-    GPIO.output(22,GPIO.HIGH)
-    GPIO.output(25,GPIO.HIGH)
-    GPIO.output(27,GPIO.LOW)
-    GPIO.output(5,GPIO.HIGH)
-    time.sleep(0.1)
-    return
+def move(radius, angle):
+    if angle < 15: #直進
+        rightPwm = 100
+        leftPwm = 100
+    elif angle < 75: #右前方
+        rghtPwm = 100 - (angle - 15)
+        leftPwm = 100
+    elif angle < 105: #右旋回
+        rightPwm = 50
+        leftPwm = 50
+    elif angle < 165: #右後方
+        rightPwm = 100 - (165 - angle)
+        leftPwm = 100
+    elif angle < 195: #後退
+        rightPwm = 100
+        leftPwm = 100
+    elif angle < 255: #左後方
+        rightPwm = 100
+        leftPwm = 100 - (angle - 195)
+    elif angle < 285: #左旋回
+        rightPwm = 50
+        leftPwm = 50
+    elif angle < 345: #左前方
+        rightPwm = 100
+        leftPwm = 100 - (345 - angle)
+    elif angle < 360: #直進
+       rightPwm = 100
+        leftPwm = 100
 
-def right():
-    rightMotorPwm.ChangeDutyCycle(50)
-    leftMotorPwm.ChangeDutyCycle(100)
-    GPIO.output(22,GPIO.HIGH)
-    GPIO.output(25,GPIO.HIGH)
-    GPIO.output(27,GPIO.LOW)
-    GPIO.output(5,GPIO.HIGH)
-    time.sleep(0.1)
-    return
+    if radius < ○○○ : #低速
+        rightPwm *= 0.5
+        leftPwm *= 0.5
 
-def left():
-    rightMotorPwm.ChangeDutyCycle(100)
-    leftMotorPwm.ChangeDutyCycle(50)
+    rightMotorPwm.ChangeDutyCycle(rightPwm)
+    leftMotorPwm.ChangeDutyCycle(leftPwm)
     GPIO.output(22,GPIO.HIGH)
     GPIO.output(25,GPIO.HIGH)
-    GPIO.output(27,GPIO.LOW)
-    GPIO.output(5,GPIO.HIGH)
-    time.sleep(0.1)
-    return
 
-def back():
-    rightMotorPwm.ChangeDutyCycle(100)
-    leftMotorPwm.ChangeDutyCycle(100)
-    GPIO.output(22,GPIO.HIGH)
-    GPIO.output(25,GPIO.HIGH)
-    GPIO.output(27,GPIO.HIGH)
-    GPIO.output(5,GPIO.LOW)
+    if 0 <= angle < 75 or 285 <= angle < 360: #前方
+        GPIO.output(27,GPIO.LOW)
+        GPIO.output(5,GPIO.HIGH)
+    elif 105 <= angle < 255: #後方
+        GPIO.output(27,GPIO.HIGH)
+        GPIO.output(5,GPIO.LOW)
+    elif 75 <= angle < 105: #右旋回
+        GPIO.output(27,GPIO.HIGH)
+        GPIO.output(5,GPIO.HIGH)
+    elif 255 <= angle < 285: #左旋回
+        GPIO.output(27,GPIO.LOW)
+        GPIO.output(5,GPIO.LOW)
     time.sleep(0.1)
-    return
 
-def back_right():
-    rightMotorPwm.ChangeDutyCycle(50)
-    leftMotorPwm.ChangeDutyCycle(100)
-    GPIO.output(22,GPIO.HIGH)
-    GPIO.output(25,GPIO.HIGH)
-    GPIO.output(27,GPIO.HIGH)
-    GPIO.output(5,GPIO.LOW)
-    time.sleep(0.1)
-    return
-
-def back_left():
-    rightMotorPwm.ChangeDutyCycle(100)
-    leftMotorPwm.ChangeDutyCycle(50)
-    GPIO.output(22,GPIO.HIGH)
-    GPIO.output(25,GPIO.HIGH)
-    GPIO.output(27,GPIO.HIGH)
-    GPIO.output(5,GPIO.LOW)
-    time.sleep(0.1)
-    return
-
-def right_turn(): #右旋回
-    rightMotorPwm.ChangeDutyCycle(100)
-    leftMotorPwm.ChangeDutyCycle(100)
-    GPIO.output(22,GPIO.HIGH)
-    GPIO.output(25,GPIO.HIGH)
-    GPIO.output(27,GPIO.HIGH)
-    GPIO.output(5,GPIO.HIGH)
-    time.sleep(0.1)
-    return
-
-def left_turn(): #左旋回
-    rightMotorPwm.ChangeDutyCycle(100)
-    leftMotorPwm.ChangeDutyCycle(100)
-    GPIO.output(22,GPIO.HIGH)
-    GPIO.output(25,GPIO.HIGH)
-    GPIO.output(27,GPIO.LOW)
-    GPIO.output(5,GPIO.LOW)
-    time.sleep(0.1)
     return
