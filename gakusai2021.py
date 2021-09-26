@@ -26,9 +26,6 @@ pulse = 145 #初期設定（砲塔0°、モーター停止）
 pi.set_PWM_dutycycle(SERVO,145)
 
 def main():
-    right = "○○○"
-    left = "○○○"
-    radius = "○○○"
     try:
         while 1:
             #以下、入力に対して機体を動かすプログラム
