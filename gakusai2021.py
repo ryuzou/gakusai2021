@@ -1,131 +1,141 @@
-# @Date:   2021-09-12T18:09:19+09:00
-# @Last modified time: 2021-09-19T19:35:54+09:00
-
-
-
-import RPi.GPIO as GPIO
 import pigpio
 import time
 
-GPIO.setmode(GPIO.BCM)
-
-GPIO.setup(27,GPIO.OUT)
-GPIO.setup(22,GPIO.OUT)
-GPIO.setup(5,GPIO.OUT)
-GPIO.setup(25,GPIO.OUT)
-
-rightMotorPwm = GPIO.PWM(22,50)
-leftMotorPwm = GPIO.PWM(25,50)
-
-rightMotorPwm.start(0)
-leftMotorPwm.start(0)
+A_PHASE = 27 
+A_ENABLE = 22
+B_PHASE = 5
+B_ENABLE = 25
+SERVO = 19
 
 pi = pigpio.pi()
-pi.setmode(19,pigpio.OUTPUT)
-pi.set_PWM_frequency(19,50)
-pi.set_PWM_range(19,2000) #-90°:50 0°:145 90°:240 5°刻み(19刻み)で動く
 
-pulse =145 #初期設定（砲塔0°、モーター停止）
-pi.set_PWM_dutycycle(19,145)
-stop()
+pi.set_mode(A_PHASE, pigpio.OUTPUT)
+pi.set_mode(A_ENABLE, pigpio.OUTPUT)
+pi.set_mode(B_PHASE, pigpio.OUTPUT)
+pi.set_mode(B_ENABLE, pigpio.OUTPUT)
 
-try:
-    while 1:
-        #以下、入力に対して機体を動かすプログラム
-        #left,right,shot,radius,angle
-        if shot == 1:
-            shot()
+pi.set_PWM_range(A_ENABLE, 100)
+pi.set_PWM_range(B_ENABLE, 100)
 
-        if right + left == 1:
-            if right == 1:
-                right_rotation()
-            if left == 1:
-                left_rotation()
+pi.set_mode(SERVO,pigpio.OUTPUT)
+pi.set_PWM_frequency(SERVO,50)
+
+pi.set_PWM_range(SERVO,2000) #-90°:50 0°:145 90°:240 5°刻み(19刻み)で動く
+
+pulse = 145 #初期設定（砲塔0°、モーター停止）
+pi.set_PWM_dutycycle(SERVO,145)
+
+def main():
+    try:
+        while 1:
+            #以下、入力に対して機体を動かすプログラム
+            #left,right,shot,radius,angle
+            if shot == 1:
+                shot()
+
+            if right + left == 1:
+                if right == 1:
+                    right_rotation()
+                if left == 1:
+                    left_rotation()
 
 
-        if radius < ○○○ : #停止
-            stop()
-        else:
-            move() < ○○○ : #動く
+            if radius < "○○○" : #停止
+                stop()
+            else:
+                move() #動く
 
-
-except KeyboardInterrupt:
-    GPIO.cleanup()
-    exit()
+    except KeyboardInterrupt:
+        pi.stop()
+        exit()
 
 def shot(): #レーザーガン班
     return
 
 def right_rotation(): #砲塔の右旋回
+    global pulse
     if pulse < 240:
         pulse += 19
-        pi.set_PWM_dutycycle(19,pulse)
-        time.sleep(10**(-6))
+        pi.set_PWM_dutycycle(SERVO,pulse)
+        time.sleep(0.1)
         return
 
 def left_rotation(): #砲塔の左旋回
+    global pulse
     if pulse > 50:
         pulse -= 19
-        pi.set_PWM_dutycycle(19,pulse)
-        time.sleep(10**(-6))
+        pi.set_PWM_dutycycle(SERVO,pulse)
+        time.sleep(0.1)
         return
 
 #dcモーター１が右前輪、dcモーター２が左前輪
 def stop():
-        GPIO.output(22,GPIO.LOW)
-        GPIO.output(25,GPIO.LOW)
-    return
+        pi.write(A_ENABLE, 0)
+        pi.write(B_ENABLE, 0)
+        return
 
 def move(radius, angle):
-    if angle < 15: #直進
+    if 0 <= angle < 15: #直進
         rightPwm = 100
         leftPwm = 100
-    elif angle < 75: #右前方
-        rghtPwm = 100 - (angle - 15)
+    elif 15<= angle < 75: #右前方
+        rightPwm = 100 - (angle - 15)
         leftPwm = 100
-    elif angle < 105: #右旋回
+    elif 75 <= angle < 105: #右旋回
         rightPwm = 50
         leftPwm = 50
-    elif angle < 165: #右後方
+    elif 105 <= angle < 165: #右後方
         rightPwm = 100 - (165 - angle)
         leftPwm = 100
-    elif angle < 195: #後退
+    elif 165 <= angle < 195: #後退
         rightPwm = 100
         leftPwm = 100
-    elif angle < 255: #左後方
+    elif 195 <= angle < 255: #左後方
         rightPwm = 100
         leftPwm = 100 - (angle - 195)
-    elif angle < 285: #左旋回
+    elif 255 <= angle < 285: #左旋回
         rightPwm = 50
         leftPwm = 50
-    elif angle < 345: #左前方
+    elif 285 <= angle < 345: #左前方
         rightPwm = 100
         leftPwm = 100 - (345 - angle)
-    elif angle < 360: #直進
-       rightPwm = 100
+    elif 345 <= angle < 360: #直進
+        rightPwm = 100
         leftPwm = 100
 
-    if radius < ○○○ : #低速
+    if radius < 50 : #低速
         rightPwm *= 0.5
         leftPwm *= 0.5
 
-    rightMotorPwm.ChangeDutyCycle(rightPwm)
-    leftMotorPwm.ChangeDutyCycle(leftPwm)
-    GPIO.output(22,GPIO.HIGH)
-    GPIO.output(25,GPIO.HIGH)
+    pi.set_PWM_dutycycle(A_ENABLE, rightPwm)
+    pi.set_PWM_dutycycle(B_ENABLE, leftPwm)
 
     if 0 <= angle < 75 or 285 <= angle < 360: #前方
-        GPIO.output(27,GPIO.LOW)
-        GPIO.output(5,GPIO.HIGH)
+        pi.write(A_PHASE, 0)
+        pi.write(B_PHASE, 1)
     elif 105 <= angle < 255: #後方
-        GPIO.output(27,GPIO.HIGH)
-        GPIO.output(5,GPIO.LOW)
+        pi.write(A_PHASE, 1)
+        pi.write(B_PHASE, 0)
     elif 75 <= angle < 105: #右旋回
-        GPIO.output(27,GPIO.HIGH)
-        GPIO.output(5,GPIO.HIGH)
+        pi.write(A_PHASE, 1)
+        pi.write(B_PHASE, 1)
     elif 255 <= angle < 285: #左旋回
-        GPIO.output(27,GPIO.LOW)
-        GPIO.output(5,GPIO.LOW)
+        pi.write(A_PHASE, 0)
+        pi.write(B_PHASE, 0)
     time.sleep(0.1)
 
     return
+
+def test(): #動作確認用
+    for i in range(360):
+        move(100,i)
+    for i in range(10):
+        right_rotation()
+    for i in range(10):
+        left_rotation()
+    pi.set_PWM_dutycycle(SERVO,145) #0°に戻す
+    time.sleep(1)
+    stop()
+    pi.stop()
+
+main()
