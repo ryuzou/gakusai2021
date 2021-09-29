@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pi/RaspiShooter/Server/main.cpp" "/home/pi/RaspiShooter/Server/cmake-build-debug/CMakeFiles/Server.dir/main.cpp.o"
+  "/home/pi/gakusai2021/Server/main.cpp" "/home/pi/gakusai2021/Server/cmake-build-debug/CMakeFiles/Server.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

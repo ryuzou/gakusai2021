@@ -5,7 +5,7 @@
       <paths name="Remote Host (799fe883-e4e6-494e-bdf7-642e8bc0b8c6)">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/pi/RaspiShooter/Server" local="$PROJECT_DIR$" />
+            <mapping deploy="/home/pi/gakusai2021/Server" local="$PROJECT_DIR$" />
           </mappings>
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />

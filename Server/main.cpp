@@ -1,47 +1,54 @@
-#include <stdio.h> //printf(), fprintf(), perror(), getc()
 #include <sys/socket.h> //socket(), bind(), sendto(), recvfrom()
 #include <arpa/inet.h> // struct sockaddr_in, struct sockaddr, inet_ntoa(), inet_aton()
-#include <stdlib.h> //atoi(), exit(), EXIT_FAILURE, EXIT_SUCCESS
-#include <string.h> //memset(), strcmp()
 #include <unistd.h> //close()
 #include <mqueue.h>
 #include <cstdint>
 #include <iostream>
 #include <mutex>
 #include <thread>
-#include <pthread.h>
 #include <opencv2/opencv.hpp>
 #include <atomic>
 
-#define MSG_FAILURE -1
-
-#define MAX_MSGSIZE 1024
-#define MAX_BUFSIZE (MAX_MSGSIZE + 1)
+#include "udpTx.h"
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-std::string globalEncodedImageContent("");
+
+std::string globalEncodedImageContent;
 std::atomic<bool> stop_tx_thread_flag(false);
+std::atomic<bool> stop_rx_thread_flag(false);
 
-void RxCommunicatorThread(){    //Thread for Receiving data from client. TCP connection.
+void RxCommunicatorThread() {    // Thread for Receiving data from client. TCP connection.
+    mqd_t mqd;
+    const int flags = O_WRONLY | O_CREAT;
+    const char *mq_name = "/tmp/gakusai2021.1"; // Name of message queue.
+    mqd = mq_open(mq_name, flags);
+    if (mqd == -1){
 
+    }
+    while (!stop_rx_thread_flag) {
+        // Getting movement data from client via tcp.
+        // Sending the data to python process with message queue.
+
+    }
+    mq_close(mqd);
 }
 
-void TxCommunicatorThread(){    //Thread for Transferring data. Mainly transferring webcam image. UDP connection.
+void TxCommunicatorThread() {    // Thread for Transferring data. Mainly transferring webcam image. UDP connection.
     std::string encodedImageContent;
-    while (!stop_tx_thread_flag){
+    udpTx udp("192.168.0.1", 50041);
+    while (!stop_tx_thread_flag) {
         pthread_mutex_lock(&mutex);
         // Getting encoded image content from main process, critical behavior.
         encodedImageContent = globalEncodedImageContent;
         // Ending critical process.
-
         pthread_mutex_unlock(&mutex);
-        if (!(encodedImageContent == "")){
-            printf("test");
+        if (!(encodedImageContent.empty())) {  // Check if there is a worthwhile content.
+            udp.send(encodedImageContent);  // Send encoded image via udp.
         }
     }
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     // Some initial stuff for opencv.
     cv::VideoCapture cap;
     cv::Mat frame;
@@ -53,18 +60,18 @@ int main(int argc, char* argv[]) {
 
     // Setting up camera streaming via opencv.
     cap.open(0);
-    if (!cap.isOpened()){
+    if (!cap.isOpened()) {
         printf("Could not open stream");
         return -1;
     }
-    int vidWidth = cap.get(cv::CAP_PROP_FRAME_WIDTH);
-    int vidHeight = cap.get(cv::CAP_PROP_FRAME_HEIGHT);
+    double vidWidth = cap.get(cv::CAP_PROP_FRAME_WIDTH);
+    double vidHeight = cap.get(cv::CAP_PROP_FRAME_HEIGHT);
     std::cout << "Video Width is " << vidWidth << std::endl;
     std::cout << "Video Height is " << vidHeight << std::endl;
     cap >> frame;
-    while (!frame.empty()){
+    while (!frame.empty()) {
         // Encoding camera stream with webp.
-        cv::imencode(".webp", frame, buff, std::vector<int>()); // Didn't need libwebp?
+        cv::imencode(".jpg", frame, buff, std::vector<int>()); // Didn't need libwebp?
         std::string encoded_content(buff.begin(), buff.end());
         pthread_mutex_lock(&mutex);
         // Passing encoded image content to thread, critical behavior.
