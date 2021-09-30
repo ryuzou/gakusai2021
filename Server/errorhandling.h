@@ -5,21 +5,17 @@
 #ifndef SERVER_ERRORHANDLING_H
 #define SERVER_ERRORHANDLING_H
 
-#include <cstdarg.h>
+#include <stdarg.h>
+#include <stdio.h>
 #include <syslog.h>
+#include <stdlib.h>
 
 #define MAXLINE 4096
-/** // Now coding.
-void err_quit(const char *fmt, ...){
-    va_list ap;
-    va_start(ap, fmt);
-}
 
-static void err_doit(int errnoflag, int level, const char *fmt, va_list ap){
-    int errno_save, n;
+void error_exit(const char *content){
     char buf[MAXLINE + 1];
-    errno_save = errno;
-    vs
+    snprintf(buf, sizeof(buf), "%s", content);
+    perror(buf);
+    exit(1);
 }
-**/
 #endif //SERVER_ERRORHANDLING_H

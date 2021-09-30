@@ -10,6 +10,10 @@
 #include <atomic>
 
 #include "udpTx.h"
+#include "errorhandling.h"
+#include "json/json11.hpp"
+
+using namespace json11;
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
@@ -17,20 +21,33 @@ std::string globalEncodedImageContent;
 std::atomic<bool> stop_tx_thread_flag(false);
 std::atomic<bool> stop_rx_thread_flag(false);
 
-void RxCommunicatorThread() {    // Thread for Receiving data from client. TCP connection.
+void RxCommunicatorThread(std::string defualtMovementCode) {    // Thread for Receiving data from client. TCP connection.
+    int i;
+    char *buff;
     mqd_t mqd;
     const int flags = O_WRONLY | O_CREAT;
-    const char *mq_name = "/tmp/gakusai2021.1"; // Name of message queue.
-    mqd = mq_open(mq_name, flags);
-    if (mqd == -1){
-
+    mode_t mode = 0777;
+    const char *mq_name = "/gakusai2021.1"; // Name of message queue.
+    char *sendedMovementCode = const_cast<char *>(defualtMovementCode.c_str());
+    bool tcp_succeed_flag(false);
+    mqd = mq_open(mq_name, flags, mode);
+    if (mqd == -1) {
+        error_exit("Message queue open failed at RxCommunicatorThread, Exiting.");
     }
     while (!stop_rx_thread_flag) {
         // Getting movement data from client via tcp.
         // Sending the data to python process with message queue.
+        buff = (char *) calloc(strlen(sendedMovementCode) + 1, sizeof(char));
+        strcpy(buff, sendedMovementCode);
+        if (!tcp_succeed_flag) {
+            if (mq_send(mqd, buff, strlen(buff), 0) == -1) {
+                error_exit("Message Queue send faild at RxCommunicatorThread, Exiting.");
+            }
 
+        }
     }
-    mq_close(mqd);
+    if (mq_close(mqd) == -1)
+        error_exit("Message queue close failed at RxCommunicatorThread, Exiting anyway.");
 }
 
 void TxCommunicatorThread() {    // Thread for Transferring data. Mainly transferring webcam image. UDP connection.
@@ -54,10 +71,11 @@ int main(int argc, char *argv[]) {
     cv::Mat frame;
     std::vector<uchar> buff;
 
-    //Initializing threads;
-    std::thread Rx(RxCommunicatorThread);
-    std::thread Tx(TxCommunicatorThread);
+    std::string stringDefualtMovementCode(R"({"joystick": {"r": 0.8, "sita": 1}, "shoot": 0, "LR": 0})");
 
+    //Initializing threads;
+    std::thread Rx(RxCommunicatorThread, stringDefualtMovementCode);
+    std::thread Tx(TxCommunicatorThread);
     // Setting up camera streaming via opencv.
     cap.open(0);
     if (!cap.isOpened()) {

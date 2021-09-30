@@ -89,6 +89,12 @@
 		<Unit filename="/home/pi/gakusai2021/Server/errorhandling.h">
 			<Option target="Server"/>
 		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/json/json11.cpp">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/json/json11.hpp">
+			<Option target="Server"/>
+		</Unit>
 		<Unit filename="/home/pi/gakusai2021/Server/main.cpp">
 			<Option target="Server"/>
 		</Unit>

@@ -123,6 +123,33 @@ Server/fast:
 	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/build
 .PHONY : Server/fast
 
+json/json11.o: json/json11.cpp.o
+
+.PHONY : json/json11.o
+
+# target to build an object file
+json/json11.cpp.o:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/json/json11.cpp.o
+.PHONY : json/json11.cpp.o
+
+json/json11.i: json/json11.cpp.i
+
+.PHONY : json/json11.i
+
+# target to preprocess a source file
+json/json11.cpp.i:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/json/json11.cpp.i
+.PHONY : json/json11.cpp.i
+
+json/json11.s: json/json11.cpp.s
+
+.PHONY : json/json11.s
+
+# target to generate assembly for a file
+json/json11.cpp.s:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/json/json11.cpp.s
+.PHONY : json/json11.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Server"
 	@echo "... edit_cache"
+	@echo "... json/json11.o"
+	@echo "... json/json11.i"
+	@echo "... json/json11.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

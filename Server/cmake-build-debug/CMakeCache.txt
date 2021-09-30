@@ -158,6 +158,21 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 //Value Computed by CMake
 CMAKE_PROJECT_NAME:STATIC=Server
 
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION:STATIC=1.0.0
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MAJOR:STATIC=1
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MINOR:STATIC=0
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_PATCH:STATIC=0
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_TWEAK:STATIC=
+
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
 
@@ -220,6 +235,12 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Build unit tests
+JSON11_BUILD_TESTS:BOOL=OFF
+
+//Enable canary test for DR 1467
+JSON11_ENABLE_DR1467_CANARY:BOOL=OFF
+
 //The directory containing a CMake configuration file for OpenCV.
 OpenCV_DIR:PATH=/usr/local/lib/cmake/opencv4
 
@@ -234,6 +255,12 @@ Server_BINARY_DIR:STATIC=/home/pi/gakusai2021/Server/cmake-build-debug
 
 //Value Computed by CMake
 Server_SOURCE_DIR:STATIC=/home/pi/gakusai2021/Server
+
+//Value Computed by CMake
+json11_BINARY_DIR:STATIC=/home/pi/gakusai2021/Server/cmake-build-debug/json
+
+//Value Computed by CMake
+json11_SOURCE_DIR:STATIC=/home/pi/gakusai2021/Server/json
 
 
 ########################
@@ -397,4 +424,6 @@ FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/usr/local][v4.5.3()]
 ProcessorCount_cmd_nproc-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ProcessorCount_cmd_sysctl
 ProcessorCount_cmd_sysctl-ADVANCED:INTERNAL=1
+//Test _flag_supported
+_flag_supported:INTERNAL=
 
