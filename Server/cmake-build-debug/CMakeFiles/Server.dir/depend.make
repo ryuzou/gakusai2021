@@ -5,7 +5,6 @@ CMakeFiles/Server.dir/json/json11.cpp.o: ../json/json11.cpp
 CMakeFiles/Server.dir/json/json11.cpp.o: ../json/json11.hpp
 
 CMakeFiles/Server.dir/main.cpp.o: ../errorhandling.h
-CMakeFiles/Server.dir/main.cpp.o: ../json/json11.hpp
 CMakeFiles/Server.dir/main.cpp.o: ../main.cpp
 CMakeFiles/Server.dir/main.cpp.o: ../udpTx.h
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/calib3d.hpp

@@ -17,10 +17,11 @@ class udpTx {
     int sock;
     struct sockaddr_in addr{};
 public:
-    udpTx(const std::string& address, int port){
+    udpTx(const int port){
         sock = socket(AF_INET, SOCK_DGRAM, 0);
+        memset(&addr, 0, sizeof(struct sockaddr_in));
         addr.sin_family = AF_INET;
-        addr.sin_addr.s_addr = inet_addr(address.c_str());
+        addr.sin_addr.s_addr = htonl(INADDR_ANY);
         addr.sin_port = htons(port);
     }
     int send(const std::string& content){

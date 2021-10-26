@@ -6,7 +6,6 @@ CMakeFiles/Server.dir/json/json11.cpp.o
  /home/pi/gakusai2021/Server/json/json11.hpp
 CMakeFiles/Server.dir/main.cpp.o
  /home/pi/gakusai2021/Server/errorhandling.h
- /home/pi/gakusai2021/Server/json/json11.hpp
  /home/pi/gakusai2021/Server/main.cpp
  /home/pi/gakusai2021/Server/udpTx.h
  /usr/local/include/opencv4/opencv2/calib3d.hpp

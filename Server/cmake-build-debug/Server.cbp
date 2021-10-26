@@ -5,7 +5,7 @@
 		<Option title="Server"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\usr\local\lib\cmake\opencv4\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\usr\local\lib\cmake\opencv4\;CMake Files\..\..\..\..\usr\local\share\;CMake Files\..\..\..\..\usr\local\share\raspicam\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-debug"/>
@@ -98,7 +98,7 @@
 		<Unit filename="/home/pi/gakusai2021/Server/main.cpp">
 			<Option target="Server"/>
 		</Unit>
-		<Unit filename="/home/pi/gakusai2021/Server/udpTx.h">
+		<Unit filename="/home/pi/gakusai2021/Server/tcpTxRx.h">
 			<Option target="Server"/>
 		</Unit>
 		<Unit filename="/home/pi/gakusai2021/Server/CMakeLists.txt">
@@ -115,6 +115,9 @@
 		</Unit>
 		<Unit filename="/home/pi/gakusai2021/Server/../../../../usr/local/lib/cmake/opencv4/OpenCVModules.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/../../../../usr/local/share/raspicam/raspicamConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\raspicam\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

@@ -1,6 +1,7 @@
-#include <sys/socket.h> //socket(), bind(), sendto(), recvfrom()
-#include <arpa/inet.h> // struct sockaddr_in, struct sockaddr, inet_ntoa(), inet_aton()
-#include <unistd.h> //close()
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <arpa/inet.h>
+#include <unistd.h>
 #include <mqueue.h>
 #include <cstdint>
 #include <iostream>
@@ -8,20 +9,37 @@
 #include <thread>
 #include <opencv2/opencv.hpp>
 #include <atomic>
+#include "raspicam/src/raspicam_cv.h"
 
 #include "udpTx.h"
+#include "tcpTxRx.h"
 #include "errorhandling.h"
-#include "json/json11.hpp"
 
-using namespace json11;
-
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-
-std::string globalEncodedImageContent;
 std::atomic<bool> stop_tx_thread_flag(false);
 std::atomic<bool> stop_rx_thread_flag(false);
 
-void RxCommunicatorThread(std::string defualtMovementCode) {    // Thread for Receiving data from client. TCP connection.
+class _globalEncodedImageContent {
+private:
+    std::string _content;
+    std::mutex _mutex;
+
+public:
+    void updateContent(const std::string& content){
+        _mutex.lock();
+        _content = content;
+        _mutex.unlock();
+    }
+    std::string getContent(){
+        std::string content;
+        _mutex.lock();
+        content = _content;
+        _mutex.unlock();
+        return content;
+    }
+};
+
+void
+RxCommunicatorThread(std::string defualtMovementCode) {    // Thread for Receiving data from client. TCP connection.
     int i;
     char *buff;
     mqd_t mqd;
@@ -50,15 +68,11 @@ void RxCommunicatorThread(std::string defualtMovementCode) {    // Thread for Re
         error_exit("Message queue close failed at RxCommunicatorThread, Exiting anyway.");
 }
 
-void TxCommunicatorThread() {    // Thread for Transferring data. Mainly transferring webcam image. UDP connection.
+void TxCommunicatorThread(_globalEncodedImageContent *globalEncodedImageContent) {    // Thread for Transferring data. Mainly transferring webcam image. UDP connection.
     std::string encodedImageContent;
-    udpTx udp("192.168.0.1", 50041);
+    udpTx udp(50041);
     while (!stop_tx_thread_flag) {
-        pthread_mutex_lock(&mutex);
-        // Getting encoded image content from main process, critical behavior.
-        encodedImageContent = globalEncodedImageContent;
-        // Ending critical process.
-        pthread_mutex_unlock(&mutex);
+        encodedImageContent = globalEncodedImageContent->getContent();
         if (!(encodedImageContent.empty())) {  // Check if there is a worthwhile content.
             udp.send(encodedImageContent);  // Send encoded image via udp.
         }
@@ -67,36 +81,45 @@ void TxCommunicatorThread() {    // Thread for Transferring data. Mainly transfe
 
 int main(int argc, char *argv[]) {
     // Some initial stuff for opencv.
-    cv::VideoCapture cap;
+    raspicam::RaspiCam_Cv Camera;
     cv::Mat frame;
     std::vector<uchar> buff;
 
-    std::string stringDefualtMovementCode(R"({"joystick": {"r": 0.8, "sita": 1}, "shoot": 0, "LR": 0})");
+    //setup
+    Camera.set( cv::CAP_PROP_FORMAT, CV_8UC1 );
+
+    std::string stringDefualtMovementCode(R"({"joystick": {"r": 0, "sita": 0}, "shoot": 0, "LR": 0})");
+
+    tcpTxRx tcp(80800);
+    tcp.receive_setup();
+    std::cout << "connected from" << tcp.connect();
 
     //Initializing threads;
+    _globalEncodedImageContent globalEncodedImageContent;
+
     std::thread Rx(RxCommunicatorThread, stringDefualtMovementCode);
-    std::thread Tx(TxCommunicatorThread);
+    std::thread Tx(TxCommunicatorThread, &globalEncodedImageContent);
     // Setting up camera streaming via opencv.
-    cap.open(0);
-    if (!cap.isOpened()) {
-        printf("Could not open stream");
-        return -1;
-    }
-    double vidWidth = cap.get(cv::CAP_PROP_FRAME_WIDTH);
-    double vidHeight = cap.get(cv::CAP_PROP_FRAME_HEIGHT);
+    if (!Camera.open()) {std::cerr<<"Error opening the camera"<<std::endl;return -1;}
+
+    double vidWidth = Camera.get(cv::CAP_PROP_FRAME_WIDTH);
+    double vidHeight = Camera.get(cv::CAP_PROP_FRAME_HEIGHT);
     std::cout << "Video Width is " << vidWidth << std::endl;
     std::cout << "Video Height is " << vidHeight << std::endl;
-    cap >> frame;
+    Camera.grab();
+    Camera.retrieve(frame);
+    std::vector<int> v;
     while (!frame.empty()) {
+        clock_t start = clock();
         // Encoding camera stream with webp.
         cv::imencode(".jpg", frame, buff, std::vector<int>()); // Didn't need libwebp?
         std::string encoded_content(buff.begin(), buff.end());
-        pthread_mutex_lock(&mutex);
-        // Passing encoded image content to thread, critical behavior.
-        globalEncodedImageContent = encoded_content;
-        // Finished passing data. Finished critical behavior.
-        pthread_mutex_unlock(&mutex);
-        cap >> frame;
+        globalEncodedImageContent.updateContent(encoded_content);
+        Camera.grab();
+        Camera.retrieve(frame);
+        clock_t end = clock();
+        std::cout << "duration = " << (double)(end - start) / CLOCKS_PER_SEC << "sec.\n";
     }
-    cap.release();
+    Camera.release();
+    return 0;
 }
