@@ -21,31 +21,6 @@ std::atomic<bool> recieve_addr_set_flag(false);
 
 std::string recieve_addr;
 
-class tcpImageContent {
-private:
-    std::string _content;
-    std::mutex _mutex;
-
-public:
-    void convertContent(cv::Mat frame){
-        std::vector<uchar> buff;
-        cv::imencode(".jpg", frame, buff, std::vector<int>());
-        std::string encoded_content_part(buff.begin(), buff.end());
-        updateContent(encoded_content_part);
-    }
-    void updateContent(const std::string& content){
-        _mutex.lock();
-        _content = content;
-        _mutex.unlock();
-    }
-    std::string getContent(){
-        std::string content;
-        _mutex.lock();
-        content = _content;
-        _mutex.unlock();
-        return content;
-    }
-};
 
 void
 RxCommunicatorThread(std::string movementCode) {    // Thread for Receiving data from destination_addr. TCP connection.
@@ -93,27 +68,24 @@ RxCommunicatorThread(std::string movementCode) {    // Thread for Receiving data
         log.error("Message queue close failed at RxCommunicatorThread, Exiting anyway.");
 }
 
-void TxCommunicatorThread(tcpImageContent *tcpImg) {    // Thread for Transferring data. Mainly transferring webcam image. UDP connection.
+void TxCommunicatorThread(globalEncodedImageContent *globalEncodedImageContent) {    // Thread for Transferring data. Mainly transferring webcam image. UDP connection.
     logger log(LOGLEVEL_DEBUG);
     std::string encodedImageContent;
     while (!recieve_addr_set_flag){}
     const char *tcp_server_addr = recieve_addr.c_str();
     log.debug(tcp_server_addr);
-    //udp udp;
-    //udp.send_setup(tcp_server_addr, 8092);
-    tcp tcp(8092);
-    tcp.send_setup(tcp_server_addr, 8092);
+    udp udp;
+    udp.send_setup(tcp_server_addr, 8092);
     while (!stop_tx_thread_flag) {
-        //encodedImageContent = globalEncodedImageContent->getNextContent();
-        encodedImageContent = tcpImg->getContent();
+        encodedImageContent = globalEncodedImageContent->getNextContent();
         const int content_size = encodedImageContent.length();
         if (!(encodedImageContent.empty())) {  // Check if there is a worthwhile content.
-            //udp.send(encodedImageContent);  // Send encoded image via udp.
-            tcp.send_content(encodedImageContent);
+            udp.send(encodedImageContent);  // Send encoded image via udp.
+            //std::cout << encodedImageContent << std::endl;
         }
     }
 }
-/**
+
 int main(int argc, char *argv[]) {
     // Some initial stuff for opencv.
     raspicam::RaspiCam_Cv Camera;
@@ -126,12 +98,11 @@ int main(int argc, char *argv[]) {
     std::string movementCode(R"({"joystick": {"r": 0, "sita": 0}, "shoot": 0, "LR": 0})");
 
     //Initializing threads;
-    //globalEncodedImageContent globalEncodedImageContent;
-    tcpImageContent tcpImg;
+    globalEncodedImageContent globalEncodedImageContent;
 
     std::thread Rx(RxCommunicatorThread, movementCode);
     //std::thread Tx(TxCommunicatorThread, &globalEncodedImageContent);
-    std::thread Tx(TxCommunicatorThread, &tcpImg);
+    std::thread Tx(TxCommunicatorThread, &globalEncodedImageContent);
     // Setting up camera streaming via opencv.
     if (!Camera.open()) {std::cerr<<"Error opening the camera"<<std::endl;return -1;}
 
@@ -143,17 +114,10 @@ int main(int argc, char *argv[]) {
     Camera.retrieve(frame);
     std::vector<int> v;
     while (!frame.empty()) {
-        //globalEncodedImageContent.convertFrame(frame);
-        tcpImg.convertContent(frame);
+        globalEncodedImageContent.convertFrame(frame);
         Camera.grab();
         Camera.retrieve(frame);
     }
     Camera.release();
-    return 0;
-}**/
-int main(int argc, char *argv[]){
-    std::string movementCode(R"({"joystick": {"r": 0, "sita": 0}, "shoot": 0, "LR": 0})");
-    std::thread Rx(RxCommunicatorThread, movementCode);
-    while (1){}
     return 0;
 }

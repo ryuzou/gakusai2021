@@ -123,6 +123,33 @@ Server/fast:
 	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/build
 .PHONY : Server/fast
 
+base64.o: base64.cpp.o
+
+.PHONY : base64.o
+
+# target to build an object file
+base64.cpp.o:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/base64.cpp.o
+.PHONY : base64.cpp.o
+
+base64.i: base64.cpp.i
+
+.PHONY : base64.i
+
+# target to preprocess a source file
+base64.cpp.i:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/base64.cpp.i
+.PHONY : base64.cpp.i
+
+base64.s: base64.cpp.s
+
+.PHONY : base64.s
+
+# target to generate assembly for a file
+base64.cpp.s:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/base64.cpp.s
+.PHONY : base64.cpp.s
+
 globalEncodedImageContent.o: globalEncodedImageContent.cpp.o
 
 .PHONY : globalEncodedImageContent.o
@@ -213,6 +240,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Server"
 	@echo "... edit_cache"
+	@echo "... base64.o"
+	@echo "... base64.i"
+	@echo "... base64.s"
 	@echo "... globalEncodedImageContent.o"
 	@echo "... globalEncodedImageContent.i"
 	@echo "... globalEncodedImageContent.s"

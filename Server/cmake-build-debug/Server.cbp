@@ -86,6 +86,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/pi/gakusai2021/Server/base64.cpp">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/base64.h">
+			<Option target="Server"/>
+		</Unit>
 		<Unit filename="/home/pi/gakusai2021/Server/errorhandling.h">
 			<Option target="Server"/>
 		</Unit>

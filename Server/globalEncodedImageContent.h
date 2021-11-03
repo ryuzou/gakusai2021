@@ -20,6 +20,7 @@
 #include "udp.h"
 #include "tcp.h"
 #include "errorhandling.h"
+#include "base64.h"
 
 class globalEncodedImageContent {
 private:
@@ -33,9 +34,8 @@ private:
 
     std::string _content;
     std::mutex _mutex;
-    std::vector<const char *> content_array;
+    std::vector<std::string> content_array;
     std::mutex mutex;
-
 
     int index_now = 0;
 

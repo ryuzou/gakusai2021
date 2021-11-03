@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/pi/gakusai2021/Server/base64.cpp" "/home/pi/gakusai2021/Server/cmake-build-debug/CMakeFiles/Server.dir/base64.cpp.o"
   "/home/pi/gakusai2021/Server/globalEncodedImageContent.cpp" "/home/pi/gakusai2021/Server/cmake-build-debug/CMakeFiles/Server.dir/globalEncodedImageContent.cpp.o"
   "/home/pi/gakusai2021/Server/json/json11.cpp" "/home/pi/gakusai2021/Server/cmake-build-debug/CMakeFiles/Server.dir/json/json11.cpp.o"
   "/home/pi/gakusai2021/Server/main.cpp" "/home/pi/gakusai2021/Server/cmake-build-debug/CMakeFiles/Server.dir/main.cpp.o"

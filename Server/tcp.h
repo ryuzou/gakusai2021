@@ -38,16 +38,19 @@ public:
         listen(orgSock, 1);
         return 0;
     }
+
+    /**
     int send_setup(const char *_destination_addr, int port){
         inet_pton(AF_INET, _destination_addr, &destination_addr.sin_addr);
         destination_addr.sin_port = htons(port);
         return 0;
-    }
+    }**/
 
+    /**
     int send_content(const std::string& content){
         send(dstSock, content.c_str(), content.length(), 0);
         return 0;
-    }
+    }**/
     char *recieve(){
         logger log(LOGLEVEL_DEBUG);
         numrcv = recv(dstSock, buffer, BUFFER_SIZE, 0);
