@@ -1,5 +1,4 @@
 #include <sys/socket.h>
-#include <sys/time.h>
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <mqueue.h>
@@ -11,19 +10,29 @@
 #include <atomic>
 #include "raspicam/src/raspicam_cv.h"
 
-#include "udpTx.h"
-#include "tcpTxRx.h"
+#include "udp.h"
+#include "tcp.h"
 #include "errorhandling.h"
+#include "globalEncodedImageContent.h"
 
 std::atomic<bool> stop_tx_thread_flag(false);
 std::atomic<bool> stop_rx_thread_flag(false);
+std::atomic<bool> recieve_addr_set_flag(false);
 
-class _globalEncodedImageContent {
+std::string recieve_addr;
+
+class tcpImageContent {
 private:
     std::string _content;
     std::mutex _mutex;
 
 public:
+    void convertContent(cv::Mat frame){
+        std::vector<uchar> buff;
+        cv::imencode(".jpg", frame, buff, std::vector<int>());
+        std::string encoded_content_part(buff.begin(), buff.end());
+        updateContent(encoded_content_part);
+    }
     void updateContent(const std::string& content){
         _mutex.lock();
         _content = content;
@@ -39,46 +48,72 @@ public:
 };
 
 void
-RxCommunicatorThread(std::string defualtMovementCode) {    // Thread for Receiving data from client. TCP connection.
+RxCommunicatorThread(std::string movementCode) {    // Thread for Receiving data from destination_addr. TCP connection.
+    logger log(LOGLEVEL_DEBUG);
     int i;
     char *buff;
     mqd_t mqd;
     const int flags = O_WRONLY | O_CREAT;
     mode_t mode = 0777;
-    const char *mq_name = "/gakusai2021.1"; // Name of message queue.
-    char *sendedMovementCode = const_cast<char *>(defualtMovementCode.c_str());
-    bool tcp_succeed_flag(false);
-    mqd = mq_open(mq_name, flags, mode);
+    const char *mq_name = "/gakusai2021.1";// Name of message queue.
+    char *sendedMovementCode = const_cast<char *>(movementCode.c_str());
+    mqd = mq_open(mq_name, flags, mode, NULL);
     if (mqd == -1) {
-        error_exit("Message queue open failed at RxCommunicatorThread, Exiting.");
+        log.error("Message queue open failed at RxCommunicatorThread, Exiting.");
     }
+
+    //tcp connection setup.
+    const char *connected_adder;
+    char *recieve_data;
+    tcp tcp(8000);
+    tcp.receive_setup();
+    connected_adder = tcp.connect();
+    std::cout << "Connected from " << connected_adder << std::endl;
+
+    recieve_addr = connected_adder;
+    recieve_addr_set_flag = true;
+
+    // initial connection
+    recieve_data = tcp.recieve();
+
+
     while (!stop_rx_thread_flag) {
-        // Getting movement data from client via tcp.
+        // Getting movement data from destination_addr via tcp.
+        recieve_data = tcp.recieve();
+        log.debug(recieve_data);
+
         // Sending the data to python process with message queue.
         buff = (char *) calloc(strlen(sendedMovementCode) + 1, sizeof(char));
         strcpy(buff, sendedMovementCode);
-        if (!tcp_succeed_flag) {
-            if (mq_send(mqd, buff, strlen(buff), 0) == -1) {
-                error_exit("Message Queue send faild at RxCommunicatorThread, Exiting.");
-            }
-
+        if (mq_send(mqd, buff, strlen(buff), 0) == -1) {
+            log.error("Message Queue send faild at RxCommunicatorThread, Exiting.");
         }
     }
     if (mq_close(mqd) == -1)
-        error_exit("Message queue close failed at RxCommunicatorThread, Exiting anyway.");
+        log.error("Message queue close failed at RxCommunicatorThread, Exiting anyway.");
 }
 
-void TxCommunicatorThread(_globalEncodedImageContent *globalEncodedImageContent) {    // Thread for Transferring data. Mainly transferring webcam image. UDP connection.
+void TxCommunicatorThread(tcpImageContent *tcpImg) {    // Thread for Transferring data. Mainly transferring webcam image. UDP connection.
+    logger log(LOGLEVEL_DEBUG);
     std::string encodedImageContent;
-    udpTx udp(50041);
+    while (!recieve_addr_set_flag){}
+    const char *tcp_server_addr = recieve_addr.c_str();
+    log.debug(tcp_server_addr);
+    //udp udp;
+    //udp.send_setup(tcp_server_addr, 8092);
+    tcp tcp(8092);
+    tcp.send_setup(tcp_server_addr, 8092);
     while (!stop_tx_thread_flag) {
-        encodedImageContent = globalEncodedImageContent->getContent();
+        //encodedImageContent = globalEncodedImageContent->getNextContent();
+        encodedImageContent = tcpImg->getContent();
+        const int content_size = encodedImageContent.length();
         if (!(encodedImageContent.empty())) {  // Check if there is a worthwhile content.
-            udp.send(encodedImageContent);  // Send encoded image via udp.
+            //udp.send(encodedImageContent);  // Send encoded image via udp.
+            tcp.send_content(encodedImageContent);
         }
     }
 }
-
+/**
 int main(int argc, char *argv[]) {
     // Some initial stuff for opencv.
     raspicam::RaspiCam_Cv Camera;
@@ -88,17 +123,15 @@ int main(int argc, char *argv[]) {
     //setup
     Camera.set( cv::CAP_PROP_FORMAT, CV_8UC1 );
 
-    std::string stringDefualtMovementCode(R"({"joystick": {"r": 0, "sita": 0}, "shoot": 0, "LR": 0})");
-
-    tcpTxRx tcp(80800);
-    tcp.receive_setup();
-    std::cout << "connected from" << tcp.connect();
+    std::string movementCode(R"({"joystick": {"r": 0, "sita": 0}, "shoot": 0, "LR": 0})");
 
     //Initializing threads;
-    _globalEncodedImageContent globalEncodedImageContent;
+    //globalEncodedImageContent globalEncodedImageContent;
+    tcpImageContent tcpImg;
 
-    std::thread Rx(RxCommunicatorThread, stringDefualtMovementCode);
-    std::thread Tx(TxCommunicatorThread, &globalEncodedImageContent);
+    std::thread Rx(RxCommunicatorThread, movementCode);
+    //std::thread Tx(TxCommunicatorThread, &globalEncodedImageContent);
+    std::thread Tx(TxCommunicatorThread, &tcpImg);
     // Setting up camera streaming via opencv.
     if (!Camera.open()) {std::cerr<<"Error opening the camera"<<std::endl;return -1;}
 
@@ -110,16 +143,17 @@ int main(int argc, char *argv[]) {
     Camera.retrieve(frame);
     std::vector<int> v;
     while (!frame.empty()) {
-        clock_t start = clock();
-        // Encoding camera stream with webp.
-        cv::imencode(".jpg", frame, buff, std::vector<int>()); // Didn't need libwebp?
-        std::string encoded_content(buff.begin(), buff.end());
-        globalEncodedImageContent.updateContent(encoded_content);
+        //globalEncodedImageContent.convertFrame(frame);
+        tcpImg.convertContent(frame);
         Camera.grab();
         Camera.retrieve(frame);
-        clock_t end = clock();
-        std::cout << "duration = " << (double)(end - start) / CLOCKS_PER_SEC << "sec.\n";
     }
     Camera.release();
+    return 0;
+}**/
+int main(int argc, char *argv[]){
+    std::string movementCode(R"({"joystick": {"r": 0, "sita": 0}, "shoot": 0, "LR": 0})");
+    std::thread Rx(RxCommunicatorThread, movementCode);
+    while (1){}
     return 0;
 }

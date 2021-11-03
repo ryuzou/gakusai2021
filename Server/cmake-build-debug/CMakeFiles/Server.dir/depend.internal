@@ -7,7 +7,11 @@ CMakeFiles/Server.dir/json/json11.cpp.o
 CMakeFiles/Server.dir/main.cpp.o
  /home/pi/gakusai2021/Server/errorhandling.h
  /home/pi/gakusai2021/Server/main.cpp
- /home/pi/gakusai2021/Server/udpTx.h
+ /home/pi/gakusai2021/Server/raspicam/src/raspicam.h
+ /home/pi/gakusai2021/Server/raspicam/src/raspicam_cv.h
+ /home/pi/gakusai2021/Server/raspicam/src/raspicamtypes.h
+ /home/pi/gakusai2021/Server/tcp.h
+ /home/pi/gakusai2021/Server/udp.h
  /usr/local/include/opencv4/opencv2/calib3d.hpp
  /usr/local/include/opencv4/opencv2/core.hpp
  /usr/local/include/opencv4/opencv2/core/affine.hpp
@@ -15,6 +19,7 @@ CMakeFiles/Server.dir/main.cpp.o
  /usr/local/include/opencv4/opencv2/core/base.hpp
  /usr/local/include/opencv4/opencv2/core/bufferpool.hpp
  /usr/local/include/opencv4/opencv2/core/check.hpp
+ /usr/local/include/opencv4/opencv2/core/core.hpp
  /usr/local/include/opencv4/opencv2/core/cuda.hpp
  /usr/local/include/opencv4/opencv2/core/cuda.inl.hpp
  /usr/local/include/opencv4/opencv2/core/cuda_types.hpp
@@ -84,6 +89,7 @@ CMakeFiles/Server.dir/main.cpp.o
  /usr/local/include/opencv4/opencv2/flann/saving.h
  /usr/local/include/opencv4/opencv2/flann/timer.h
  /usr/local/include/opencv4/opencv2/highgui.hpp
+ /usr/local/include/opencv4/opencv2/highgui/highgui.hpp
  /usr/local/include/opencv4/opencv2/imgcodecs.hpp
  /usr/local/include/opencv4/opencv2/imgproc.hpp
  /usr/local/include/opencv4/opencv2/imgproc/segmentation.hpp

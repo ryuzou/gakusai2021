@@ -6,7 +6,11 @@ CMakeFiles/Server.dir/json/json11.cpp.o: ../json/json11.hpp
 
 CMakeFiles/Server.dir/main.cpp.o: ../errorhandling.h
 CMakeFiles/Server.dir/main.cpp.o: ../main.cpp
-CMakeFiles/Server.dir/main.cpp.o: ../udpTx.h
+CMakeFiles/Server.dir/main.cpp.o: ../raspicam/src/raspicam.h
+CMakeFiles/Server.dir/main.cpp.o: ../raspicam/src/raspicam_cv.h
+CMakeFiles/Server.dir/main.cpp.o: ../raspicam/src/raspicamtypes.h
+CMakeFiles/Server.dir/main.cpp.o: ../tcp.h
+CMakeFiles/Server.dir/main.cpp.o: ../udp.h
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/calib3d.hpp
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/core.hpp
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/core/affine.hpp
@@ -14,6 +18,7 @@ CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/core/async.
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/core/base.hpp
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/core/bufferpool.hpp
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/core/check.hpp
+CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/core/core.hpp
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/core/cuda.hpp
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/core/cuda.inl.hpp
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/core/cuda_types.hpp
@@ -83,6 +88,7 @@ CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/flann/sampl
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/flann/saving.h
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/flann/timer.h
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/highgui.hpp
+CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/highgui/highgui.hpp
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/imgcodecs.hpp
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/imgproc.hpp
 CMakeFiles/Server.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/imgproc/segmentation.hpp

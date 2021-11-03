@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -pthread -lrt -Ofast -O3 -DNDEBUG  -shared -Wl,-soname,libjson11.so -o libjson11.so CMakeFiles/json11.dir/json11.cpp.o   -L/home/pi/gakusai2021/Server/raspicam/src 

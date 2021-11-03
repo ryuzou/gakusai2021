@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="raspicam"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\usr\local\lib\cmake\opencv4\;CMake Files\json\;CMake Files\raspicam\;CMake Files\raspicam\src\;CMake Files\raspicam\utils\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-release/raspicam"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="uninstall">
+				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-release/raspicam"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/Makefile&quot;  VERBOSE=1 uninstall"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="raspicam">
+				<Option output="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/libraspicam.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/../dependencies/interface/vcos"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/../dependencies/interface"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/../dependencies"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/."/>
+					<Add directory="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 raspicam"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="raspicam/fast">
+				<Option output="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/libraspicam.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/../dependencies/interface/vcos"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/../dependencies/interface"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/../dependencies"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/."/>
+					<Add directory="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 raspicam/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="raspicam_cv">
+				<Option output="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/libraspicam_cv.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/../dependencies/interface/vcos"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/../dependencies/interface"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/../dependencies"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/."/>
+					<Add directory="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src"/>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 raspicam_cv"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="raspicam_cv/fast">
+				<Option output="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/libraspicam_cv.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/../dependencies/interface/vcos"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/../dependencies/interface"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/../dependencies"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src/."/>
+					<Add directory="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src"/>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 raspicam_cv/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="raspicam_still_test">
+				<Option output="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/raspicam_still_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface/vcos"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 raspicam_still_test"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="raspicam_still_test/fast">
+				<Option output="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/raspicam_still_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface/vcos"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 raspicam_still_test/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="raspicam_test">
+				<Option output="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/raspicam_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface/vcos"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 raspicam_test"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="raspicam_test/fast">
+				<Option output="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/raspicam_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface/vcos"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 raspicam_test/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="raspicam_cv_test">
+				<Option output="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/raspicam_cv_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface/vcos"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies"/>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 raspicam_cv_test"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="raspicam_cv_test/fast">
+				<Option output="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/raspicam_cv_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface/vcos"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies"/>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 raspicam_cv_test/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="raspicam_cv_still_test">
+				<Option output="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/raspicam_cv_still_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface/vcos"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies"/>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 raspicam_cv_still_test"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="raspicam_cv_still_test/fast">
+				<Option output="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/raspicam_cv_still_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/src"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface/vcos"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies/interface"/>
+					<Add directory="/home/pi/gakusai2021/Server/raspicam/utils/../dependencies"/>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 raspicam_cv_still_test/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/pi/gakusai2021/Server/cmake-build-release/raspicam/utils/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/cvversioning.h">
+			<Option target="raspicam"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/private/private_impl.cpp">
+			<Option target="raspicam"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/private/private_impl.h">
+			<Option target="raspicam"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/private/threadcondition.cpp">
+			<Option target="raspicam"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/private/threadcondition.h">
+			<Option target="raspicam"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/private_still/private_still_impl.cpp">
+			<Option target="raspicam"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/private_still/private_still_impl.h">
+			<Option target="raspicam"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/raspicam.cpp">
+			<Option target="raspicam"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/raspicam.h">
+			<Option target="raspicam"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/raspicam_cv.cpp">
+			<Option target="raspicam_cv"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/raspicam_cv.h">
+			<Option target="raspicam_cv"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/raspicam_still.cpp">
+			<Option target="raspicam"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/raspicam_still.h">
+			<Option target="raspicam"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/raspicam_still_cv.cpp">
+			<Option target="raspicam_cv"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/raspicam_still_cv.h">
+			<Option target="raspicam_cv"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/raspicamtypes.h">
+			<Option target="raspicam"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/utils/raspicam_cv_still_test.cpp">
+			<Option target="raspicam_cv_still_test"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/utils/raspicam_cv_test.cpp">
+			<Option target="raspicam_cv_test"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/utils/raspicam_still_test.cpp">
+			<Option target="raspicam_still_test"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/utils/raspicam_test.cpp">
+			<Option target="raspicam_test"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/../../../../usr/local/lib/cmake/opencv4/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/../../../../usr/local/lib/cmake/opencv4/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/../../../../usr/local/lib/cmake/opencv4/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/../../../../usr/local/lib/cmake/opencv4/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/json/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\json\"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/json/json11.pc.in">
+			<Option virtualFolder="CMake Files\json\"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\raspicam\"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/cmake_uninstall.cmake.in">
+			<Option virtualFolder="CMake Files\raspicam\"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/config.cmake.in">
+			<Option virtualFolder="CMake Files\raspicam\"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\raspicam\src\"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/raspicam/utils/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\raspicam\utils\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

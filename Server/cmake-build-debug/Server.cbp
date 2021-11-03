@@ -89,6 +89,12 @@
 		<Unit filename="/home/pi/gakusai2021/Server/errorhandling.h">
 			<Option target="Server"/>
 		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/globalEncodedImageContent.cpp">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/home/pi/gakusai2021/Server/globalEncodedImageContent.h">
+			<Option target="Server"/>
+		</Unit>
 		<Unit filename="/home/pi/gakusai2021/Server/json/json11.cpp">
 			<Option target="Server"/>
 		</Unit>
@@ -98,7 +104,7 @@
 		<Unit filename="/home/pi/gakusai2021/Server/main.cpp">
 			<Option target="Server"/>
 		</Unit>
-		<Unit filename="/home/pi/gakusai2021/Server/tcpTxRx.h">
+		<Unit filename="/home/pi/gakusai2021/Server/tcp.h">
 			<Option target="Server"/>
 		</Unit>
 		<Unit filename="/home/pi/gakusai2021/Server/CMakeLists.txt">

@@ -123,6 +123,33 @@ Server/fast:
 	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/build
 .PHONY : Server/fast
 
+globalEncodedImageContent.o: globalEncodedImageContent.cpp.o
+
+.PHONY : globalEncodedImageContent.o
+
+# target to build an object file
+globalEncodedImageContent.cpp.o:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/globalEncodedImageContent.cpp.o
+.PHONY : globalEncodedImageContent.cpp.o
+
+globalEncodedImageContent.i: globalEncodedImageContent.cpp.i
+
+.PHONY : globalEncodedImageContent.i
+
+# target to preprocess a source file
+globalEncodedImageContent.cpp.i:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/globalEncodedImageContent.cpp.i
+.PHONY : globalEncodedImageContent.cpp.i
+
+globalEncodedImageContent.s: globalEncodedImageContent.cpp.s
+
+.PHONY : globalEncodedImageContent.s
+
+# target to generate assembly for a file
+globalEncodedImageContent.cpp.s:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/globalEncodedImageContent.cpp.s
+.PHONY : globalEncodedImageContent.cpp.s
+
 json/json11.o: json/json11.cpp.o
 
 .PHONY : json/json11.o
@@ -186,6 +213,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Server"
 	@echo "... edit_cache"
+	@echo "... globalEncodedImageContent.o"
+	@echo "... globalEncodedImageContent.i"
+	@echo "... globalEncodedImageContent.s"
 	@echo "... json/json11.o"
 	@echo "... json/json11.i"
 	@echo "... json/json11.s"
