@@ -4,7 +4,6 @@
 
 #include "globalEncodedImageContent.h"
 
-#include <utility>
 
 
 globalEncodedImageContent::globalEncodedImageContent() {
@@ -28,12 +27,11 @@ std::string globalEncodedImageContent::getContent(int index) {
 }
 
 int globalEncodedImageContent::convertFrame(cv::Mat frame) {
-    clock_t start = clock();
     int x_cod = 0;
     int y_cod = 0;
     for (int y = 0; y < height_divide; ++y) {
         for (int x = 0; x < width_divide; ++x) {
-            clock_t start = clock();
+            //clock_t start = clock();
             x_cod = x * x_len;
             y_cod = y * y_len;
             std::vector<uchar> buff;
@@ -42,11 +40,11 @@ int globalEncodedImageContent::convertFrame(cv::Mat frame) {
             cv::imencode(".jpg", divided_image, buff, std::vector<int>());
             std::string encoded_content_part = base64_encode(buff.data(), buff.size());   // base64 encode, mainly for debug, delete this for speed up. //todo
             std::string content_part = std::to_string(x * x_len) + "_" + std::to_string(y * y_len) + "_" + std::to_string(x_len) + "_" +
-                                       std::to_string(y_len) + "&" + encoded_content_part;
+                                       std::to_string(y_len) + "_" + std::to_string(clock()) + "&" + encoded_content_part;
             updateContent(content_part, cod2index(x, y));
             clock_t end = clock();
             //std::cout << (double)(end - start) / CLOCKS_PER_SEC << std::endl;
-            //std::cout << content_part << std::endl;
+            //std::cout << end << std::endl;
         }
     }
     clock_t end = clock();

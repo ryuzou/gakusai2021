@@ -51,16 +51,30 @@ public:
         send(dstSock, content.c_str(), content.length(), 0);
         return 0;
     }**/
-    char *recieve(){
+    std::basic_string<char> recieve_lines(){
+        ssize_t i, rc;
+        char c;
+        std::string lineString("");
         logger log(LOGLEVEL_DEBUG);
-        numrcv = recv(dstSock, buffer, BUFFER_SIZE, 0);
-        if(numrcv == -1) {
-            close(dstSock);
-            log.error("Connection error:.");
-        } else if(numrcv == 0){
-            close(dstSock);
+        for (i = 1; i < MAXLINE; ++i) {
+            rc = read(dstSock, &c, 1);
+            if (rc == 1){
+                lineString += c;
+                if (c == '\n'){
+                    break;
+                }
+            } else if (rc == 0){
+                if (i == 1){
+                    return const_cast<char *>(std::string("").c_str());
+                } else {
+                    break;
+                }
+            } else {
+                close(dstSock);
+                log.error("Connection error:.");
+            }
         }
-        return buffer;
+        return lineString;
     }
 
     const char *connect() {

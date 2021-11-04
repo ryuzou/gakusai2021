@@ -22,13 +22,43 @@ syslog.h
 stdlib.h
 -
 
-/home/pi/gakusai2021/Server/globalEncodedImageContent.cpp
-globalEncodedImageContent.h
 /home/pi/gakusai2021/Server/globalEncodedImageContent.h
+sys/socket.h
+-
+arpa/inet.h
+-
+unistd.h
+-
+mqueue.h
+-
+cstdint
+-
+iostream
+-
 utility
 -
+chrono
+-
+mutex
+-
+thread
+-
+opencv2/opencv.hpp
+-
+atomic
+-
+raspicam/src/raspicam_cv.h
+/home/pi/gakusai2021/Server/raspicam/src/raspicam_cv.h
+udp.h
+/home/pi/gakusai2021/Server/udp.h
+tcp.h
+/home/pi/gakusai2021/Server/tcp.h
+errorhandling.h
+/home/pi/gakusai2021/Server/errorhandling.h
+base64.h
+/home/pi/gakusai2021/Server/base64.h
 
-/home/pi/gakusai2021/Server/globalEncodedImageContent.h
+/home/pi/gakusai2021/Server/main.cpp
 sys/socket.h
 -
 arpa/inet.h
@@ -57,8 +87,8 @@ tcp.h
 /home/pi/gakusai2021/Server/tcp.h
 errorhandling.h
 /home/pi/gakusai2021/Server/errorhandling.h
-base64.h
-/home/pi/gakusai2021/Server/base64.h
+globalEncodedImageContent.h
+/home/pi/gakusai2021/Server/globalEncodedImageContent.h
 
 /home/pi/gakusai2021/Server/raspicam/src/raspicam.h
 cstdio

@@ -19,7 +19,14 @@
       <paths name="pi@raspberrypi.local:22 password">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/home/pi/gakusai2021" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="pi@raspberrypi.local:22 password (1)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/pi/gakusai2021" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

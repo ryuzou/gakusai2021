@@ -8,8 +8,8 @@
 #include <thread>
 #include <opencv2/opencv.hpp>
 #include <atomic>
-#include "raspicam/src/raspicam_cv.h"
 
+#include "raspicam/src/raspicam_cv.h"
 #include "udp.h"
 #include "tcp.h"
 #include "errorhandling.h"
@@ -39,7 +39,7 @@ RxCommunicatorThread(std::string movementCode) {    // Thread for Receiving data
 
     //tcp connection setup.
     const char *connected_adder;
-    char *recieve_data;
+    std::string recieve_data;
     tcp tcp(8000);
     tcp.receive_setup();
     connected_adder = tcp.connect();
@@ -49,21 +49,23 @@ RxCommunicatorThread(std::string movementCode) {    // Thread for Receiving data
     recieve_addr_set_flag = true;
 
     // initial connection
-    recieve_data = tcp.recieve();
+    recieve_data = tcp.recieve_lines();
 
 
     while (!stop_rx_thread_flag) {
         // Getting movement data from destination_addr via tcp.
-        recieve_data = tcp.recieve();
-        std::cout << recieve_data << "\n" << std::endl;
+        recieve_data = tcp.recieve_lines();
+        std::cout << recieve_data << std::endl;
 
-        /**
+        sendedMovementCode = const_cast<char *>(recieve_data.c_str());
         // Sending the data to python process with message queue.
         buff = (char *) calloc(strlen(sendedMovementCode) + 1, sizeof(char));
         strcpy(buff, sendedMovementCode);
+        std::cout << buff << std::endl;
+
         if (mq_send(mqd, buff, strlen(buff), 0) == -1) {
             log.error("Message Queue send faild at RxCommunicatorThread, Exiting.");
-        }**/
+        }
     }
     if (mq_close(mqd) == -1)
         log.error("Message queue close failed at RxCommunicatorThread, Exiting anyway.");
@@ -96,7 +98,7 @@ int main(int argc, char *argv[]) {
     //setup
     Camera.set( cv::CAP_PROP_FORMAT, CV_8UC1 );
 
-    std::string movementCode(R"({"joystick": {"r": 0, "sita": 0}, "shoot": 0, "LR": 0})");
+    std::string movementCode(R"({"joystick": {"radius": 0, "stick_degree": 0}, "shot_button": 0, "reload_button": 0, "left": 0, "right": 0})");
 
     //Initializing threads;
     globalEncodedImageContent globalEncodedImageContent;
