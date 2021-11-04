@@ -6,14 +6,16 @@
 #include <iostream>
 #include <mutex>
 #include <thread>
-#include <opencv2/opencv.hpp>
+//#include <opencv2/opencv.hpp>
 #include <atomic>
+#include <vector>
+#include <cstring>
 
-#include "raspicam/src/raspicam_cv.h"
+//#include "raspicam/src/raspicam_cv.h"
 #include "udp.h"
 #include "tcp.h"
 #include "errorhandling.h"
-#include "globalEncodedImageContent.h"
+//#include "globalEncodedImageContent.h"
 
 std::atomic<bool> stop_tx_thread_flag(false);
 std::atomic<bool> stop_rx_thread_flag(false);
@@ -70,7 +72,7 @@ RxCommunicatorThread(std::string movementCode) {    // Thread for Receiving data
     if (mq_close(mqd) == -1)
         log.error("Message queue close failed at RxCommunicatorThread, Exiting anyway.");
 }
-
+/**
 void TxCommunicatorThread(globalEncodedImageContent *globalEncodedImageContent) {    // Thread for Transferring data. Mainly transferring webcam image. UDP connection.
     logger log(LOGLEVEL_DEBUG);
     std::string encodedImageContent;
@@ -87,26 +89,27 @@ void TxCommunicatorThread(globalEncodedImageContent *globalEncodedImageContent) 
             //std::cout << encodedImageContent << std::endl;
         }
     }
-}
+}**/
 
 int main(int argc, char *argv[]) {
     // Some initial stuff for opencv.
-    raspicam::RaspiCam_Cv Camera;
-    cv::Mat frame;
-    std::vector<uchar> buff;
+    //raspicam::RaspiCam_Cv Camera;
+    //cv::Mat frame;
+    //std::vector<uchar> buff;
 
     //setup
-    Camera.set( cv::CAP_PROP_FORMAT, CV_8UC1 );
+    //Camera.set( cv::CAP_PROP_FORMAT, CV_8UC1 );
 
     std::string movementCode(R"({"joystick": {"radius": 0, "stick_degree": 0}, "shot_button": 0, "reload_button": 0, "left": 0, "right": 0})");
 
     //Initializing threads;
-    globalEncodedImageContent globalEncodedImageContent;
+    //globalEncodedImageContent globalEncodedImageContent;
 
     std::thread Rx(RxCommunicatorThread, movementCode);
     //std::thread Tx(TxCommunicatorThread, &globalEncodedImageContent);
-    std::thread Tx(TxCommunicatorThread, &globalEncodedImageContent);
+    //std::thread Tx(TxCommunicatorThread, &globalEncodedImageContent);
     // Setting up camera streaming via opencv.
+    /**
     if (!Camera.open()) {std::cerr<<"Error opening the camera"<<std::endl;return -1;}
 
     double vidWidth = Camera.get(cv::CAP_PROP_FRAME_WIDTH);
@@ -122,5 +125,8 @@ int main(int argc, char *argv[]) {
         Camera.retrieve(frame);
     }
     Camera.release();
+    return 0;
+     **/
+    while (1){}
     return 0;
 }

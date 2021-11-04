@@ -6,6 +6,20 @@
 
 #IncludeRegexTransform: 
 
+/home/pi/gakusai2021/Server/base64.cpp
+base64.h
+/home/pi/gakusai2021/Server/base64.h
+algorithm
+-
+stdexcept
+-
+
+/home/pi/gakusai2021/Server/base64.h
+string
+-
+string_view
+-
+
 /home/pi/gakusai2021/Server/errorhandling.h
 stdarg.h
 -
@@ -15,6 +29,46 @@ syslog.h
 -
 stdlib.h
 -
+
+/home/pi/gakusai2021/Server/globalEncodedImageContent.cpp
+globalEncodedImageContent.h
+/home/pi/gakusai2021/Server/globalEncodedImageContent.h
+
+/home/pi/gakusai2021/Server/globalEncodedImageContent.h
+sys/socket.h
+-
+arpa/inet.h
+-
+unistd.h
+-
+mqueue.h
+-
+cstdint
+-
+iostream
+-
+utility
+-
+chrono
+-
+mutex
+-
+thread
+-
+opencv2/opencv.hpp
+-
+atomic
+-
+raspicam/src/raspicam_cv.h
+/home/pi/gakusai2021/Server/raspicam/src/raspicam_cv.h
+udp.h
+/home/pi/gakusai2021/Server/udp.h
+tcp.h
+/home/pi/gakusai2021/Server/tcp.h
+errorhandling.h
+/home/pi/gakusai2021/Server/errorhandling.h
+base64.h
+/home/pi/gakusai2021/Server/base64.h
 
 /home/pi/gakusai2021/Server/main.cpp
 sys/socket.h
@@ -39,10 +93,14 @@ atomic
 -
 raspicam/src/raspicam_cv.h
 /home/pi/gakusai2021/Server/raspicam/src/raspicam_cv.h
-udpTx.h
-/home/pi/gakusai2021/Server/udpTx.h
+udp.h
+/home/pi/gakusai2021/Server/udp.h
+tcp.h
+/home/pi/gakusai2021/Server/tcp.h
 errorhandling.h
 /home/pi/gakusai2021/Server/errorhandling.h
+globalEncodedImageContent.h
+/home/pi/gakusai2021/Server/globalEncodedImageContent.h
 
 /home/pi/gakusai2021/Server/raspicam/src/raspicam.h
 cstdio
@@ -62,7 +120,7 @@ raspicam.h
 
 /home/pi/gakusai2021/Server/raspicam/src/raspicamtypes.h
 
-/home/pi/gakusai2021/Server/udpTx.h
+/home/pi/gakusai2021/Server/tcp.h
 sys/types.h
 -
 sys/socket.h
@@ -75,6 +133,24 @@ unistd.h
 -
 iostream
 -
+errorhandling.h
+/home/pi/gakusai2021/Server/errorhandling.h
+
+/home/pi/gakusai2021/Server/udp.h
+sys/types.h
+-
+sys/socket.h
+-
+netinet/in.h
+-
+arpa/inet.h
+-
+unistd.h
+-
+iostream
+-
+errorhandling.h
+/home/pi/gakusai2021/Server/errorhandling.h
 
 /usr/local/include/opencv4/opencv2/calib3d.hpp
 opencv2/core.hpp

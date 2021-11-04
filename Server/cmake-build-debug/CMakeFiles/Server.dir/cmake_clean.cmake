@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Server.dir/base64.cpp.o"
-  "CMakeFiles/Server.dir/globalEncodedImageContent.cpp.o"
   "CMakeFiles/Server.dir/json/json11.cpp.o"
   "CMakeFiles/Server.dir/main.cpp.o"
   "Server"
