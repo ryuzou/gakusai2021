@@ -105,7 +105,7 @@ def status_observer():
     decimg = cv2.imdecode(encimg, cv2.IMREAD_COLOR)
     baseImg = decimg
 
-    IPADDR = "192.168.0.7"
+    IPADDR = "192.168.0.8"
     PORT_TCP = 8000
     PORT_UDP = 8092
 

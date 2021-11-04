@@ -4,16 +4,6 @@
 CMakeFiles/Server.dir/base64.cpp.o: ../base64.cpp
 CMakeFiles/Server.dir/base64.cpp.o: ../base64.h
 
-CMakeFiles/Server.dir/globalEncodedImageContent.cpp.o: ../base64.h
-CMakeFiles/Server.dir/globalEncodedImageContent.cpp.o: ../errorhandling.h
-CMakeFiles/Server.dir/globalEncodedImageContent.cpp.o: ../globalEncodedImageContent.cpp
-CMakeFiles/Server.dir/globalEncodedImageContent.cpp.o: ../globalEncodedImageContent.h
-CMakeFiles/Server.dir/globalEncodedImageContent.cpp.o: ../raspicam/src/raspicam.h
-CMakeFiles/Server.dir/globalEncodedImageContent.cpp.o: ../raspicam/src/raspicam_cv.h
-CMakeFiles/Server.dir/globalEncodedImageContent.cpp.o: ../raspicam/src/raspicamtypes.h
-CMakeFiles/Server.dir/globalEncodedImageContent.cpp.o: ../tcp.h
-CMakeFiles/Server.dir/globalEncodedImageContent.cpp.o: ../udp.h
-
 CMakeFiles/Server.dir/json/json11.cpp.o: ../json/json11.cpp
 CMakeFiles/Server.dir/json/json11.cpp.o: ../json/json11.hpp
 

@@ -4,16 +4,6 @@
 CMakeFiles/Server.dir/base64.cpp.o
  /home/pi/gakusai2021/Server/base64.cpp
  /home/pi/gakusai2021/Server/base64.h
-CMakeFiles/Server.dir/globalEncodedImageContent.cpp.o
- /home/pi/gakusai2021/Server/base64.h
- /home/pi/gakusai2021/Server/errorhandling.h
- /home/pi/gakusai2021/Server/globalEncodedImageContent.cpp
- /home/pi/gakusai2021/Server/globalEncodedImageContent.h
- /home/pi/gakusai2021/Server/raspicam/src/raspicam.h
- /home/pi/gakusai2021/Server/raspicam/src/raspicam_cv.h
- /home/pi/gakusai2021/Server/raspicam/src/raspicamtypes.h
- /home/pi/gakusai2021/Server/tcp.h
- /home/pi/gakusai2021/Server/udp.h
 CMakeFiles/Server.dir/json/json11.cpp.o
  /home/pi/gakusai2021/Server/json/json11.cpp
  /home/pi/gakusai2021/Server/json/json11.hpp
