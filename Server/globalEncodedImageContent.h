@@ -26,11 +26,11 @@ class globalEncodedImageContent {
 private:
     static const int height = 960;
     static const int width = 1280;
-    static const int height_divide = 32;
-    static const int width_divide = 32;
+    static const int height_divide = 8;
+    static const int width_divide = 8;
     static const int x_len = width / width_divide;
     static const int y_len = height / height_divide;
-    static const int max_index = x_len * y_len - 1;    // counting by 0 start
+    static const int max_index = width_divide * height_divide - 1;    // counting by 0 start
 
     std::string _content;
     std::mutex _mutex;

@@ -8,7 +8,7 @@
 
 
 globalEncodedImageContent::globalEncodedImageContent() {
-    content_array.reserve(1200);
+    content_array.reserve(1024 * 8);
 }
 
 void globalEncodedImageContent::updateContent(std::string content, int index) {
@@ -28,31 +28,38 @@ std::string globalEncodedImageContent::getContent(int index) {
 }
 
 int globalEncodedImageContent::convertFrame(cv::Mat frame) {
-    //clock_t start = clock();
-    for (int x = 0; x < x_len; ++x) {
-        for (int y = 0; y < y_len; ++y) {
+    clock_t start = clock();
+    int x_cod = 0;
+    int y_cod = 0;
+    for (int y = 0; y < height_divide; ++y) {
+        for (int x = 0; x < width_divide; ++x) {
+            clock_t start = clock();
+            x_cod = x * x_len;
+            y_cod = y * y_len;
             std::vector<uchar> buff;
-            cv::Mat divided_image(frame, cv::Rect(x, y, x_len, y_len));
+            //std::cout << x_cod << "   " << y_cod << std::endl;
+            cv::Mat divided_image(frame, cv::Rect(x_cod, y_cod, x_len, y_len));
             cv::imencode(".jpg", divided_image, buff, std::vector<int>());
-            auto *enc_msg = reinterpret_cast<unsigned char*>(buff.data());  // base64 encode, mainly for debug, delete this for speed up. //todo
-            std::string encoded_content_part = base64_encode(enc_msg, buff.size());
-            std::string content_part = std::to_string(x) + "_" + std::to_string(y) + "_" + std::to_string(x_len) + "_" +
+            std::string encoded_content_part = base64_encode(buff.data(), buff.size());   // base64 encode, mainly for debug, delete this for speed up. //todo
+            std::string content_part = std::to_string(x * x_len) + "_" + std::to_string(y * y_len) + "_" + std::to_string(x_len) + "_" +
                                        std::to_string(y_len) + "&" + encoded_content_part;
             updateContent(content_part, cod2index(x, y));
+            clock_t end = clock();
+            //std::cout << (double)(end - start) / CLOCKS_PER_SEC << std::endl;
+            //std::cout << content_part << std::endl;
         }
     }
-    //clock_t end = clock();
+    clock_t end = clock();
     //std::cout << (double)(end - start) / CLOCKS_PER_SEC << std::endl;
     return 0;
 }
 
 int globalEncodedImageContent::cod2index(int x, int y) {
-    return y * x_len + x;
+    return y * height_divide + x;
 }
 
 std::string globalEncodedImageContent::getNextContent() {
     std::string content = getContent(index_now);
-    std::cout << content << "\n" << index_now <<std::endl;
     index_now++;
     if (index_now > max_index){
         index_now = 0;

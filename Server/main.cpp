@@ -55,14 +55,15 @@ RxCommunicatorThread(std::string movementCode) {    // Thread for Receiving data
     while (!stop_rx_thread_flag) {
         // Getting movement data from destination_addr via tcp.
         recieve_data = tcp.recieve();
-        log.debug(recieve_data);
+        std::cout << recieve_data << "\n" << std::endl;
 
+        /**
         // Sending the data to python process with message queue.
         buff = (char *) calloc(strlen(sendedMovementCode) + 1, sizeof(char));
         strcpy(buff, sendedMovementCode);
         if (mq_send(mqd, buff, strlen(buff), 0) == -1) {
             log.error("Message Queue send faild at RxCommunicatorThread, Exiting.");
-        }
+        }**/
     }
     if (mq_close(mqd) == -1)
         log.error("Message queue close failed at RxCommunicatorThread, Exiting anyway.");
