@@ -83,11 +83,9 @@ def update_controller():
             lock.acquire()
             gameJson = json.dumps(gameDict)
             lock.release()
-            # print(gameJson)
-
 
 def status_observer():
-    baseImg = np.zeros((960, 1280, 3)).astype('int')
+    baseImg = np.zeros((480, 640, 3)).astype('int')
     baseImg += [0, 0, 255][::-1]  # RGBで青指定
 
     encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 5]
@@ -96,21 +94,10 @@ def status_observer():
         print('could not encode image!')
         exit()
 
-    global gameJson
-
-    lock.acquire()
-    local_gamejson = gameJson
-    lock.release()
-
     decimg = cv2.imdecode(encimg, cv2.IMREAD_COLOR)
     baseImg = decimg
 
-    IPADDR = "192.168.0.8"
-    PORT_TCP = 8000
     PORT_UDP = 8092
-
-    socket_tcp = socket(AF_INET, SOCK_STREAM)
-    socket_tcp.connect((IPADDR, PORT_TCP))
 
     socket_udp = socket(AF_INET, SOCK_DGRAM)
     socket_udp.bind(("0.0.0.0", PORT_UDP))
@@ -118,13 +105,7 @@ def status_observer():
     buff = 1034 * 64
 
     while True:
-        lock.acquire()
-        local_gamejson = gameJson
-        lock.release()
-        print(local_gamejson)
-        socket_tcp.send(((local_gamejson + '\n').encode("utf-8")))
-        time.sleep(0.1)
-        """data = bytes()
+        data = bytes()
         data, _ = socket_udp.recvfrom(buff)
         data = data.decode()
 
@@ -137,7 +118,7 @@ def status_observer():
 
         timestamp = int(header.split("_")[4])
 
-        print(data)
+        #print(data)
 
         img_data = base64.b64decode(data.split("&")[1])
         nparr = np.frombuffer(img_data, np.uint8)
@@ -146,11 +127,29 @@ def status_observer():
         baseImg[y_cod:(y_cod + y_len), x_cod:(x_cod + x_len)] = img_decode
         cv2.imshow("img", baseImg)
         if cv2.waitKey(1) != -1:
-            break"""
+            break
 
+
+def json_sender():
+    IPADDR = "192.168.0.8"
+    PORT_TCP = 8000
+    socket_tcp = socket(AF_INET, SOCK_STREAM)
+    socket_tcp.connect((IPADDR, PORT_TCP))
+    gameDict = {"joystick": {"radius": 0, "stick_degree": 0}, "shot_button": 0, "reload_button": 0, "left": 0,
+                "right": 0}
+    baseGameJson = json.dumps(gameDict)
+    global gameJson
+    while True:
+        socket_tcp.send(((baseGameJson + '\n').encode("utf-8")))
+        print(baseGameJson)
+        lock.acquire()
+        baseGameJson = gameJson
+        lock.release()
 
 lock = threading.Lock()
 thread_1 = threading.Thread(target=update_controller)
 thread_2 = threading.Thread(target=status_observer)
+thread_3 = threading.Thread(target=json_sender)
 thread_1.start()
 thread_2.start()
+thread_3.start()

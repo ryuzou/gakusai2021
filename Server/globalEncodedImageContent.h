@@ -26,22 +26,25 @@
 
 class globalEncodedImageContent {
 private:
-    static const int height = 960;
-    static const int width = 1280;
-    static const int height_divide = 16;
-    static const int width_divide = 16;
+    static const int height = 480;
+    static const int width = 640;
+    static const int height_divide = 6;
+    static const int width_divide = 6;
     static const int x_len = width / width_divide;
     static const int y_len = height / height_divide;
     static const int max_index = width_divide * height_divide - 1;    // counting by 0 start
 
     std::string _content;
     std::mutex _mutex;
+    //std::vector<std::mutex> mutex_array;
     std::vector<std::string> content_array;
     std::mutex mutex;
 
     int index_now = 0;
 
 public:
+    int public_height = height;
+    int public_width = width;
     globalEncodedImageContent();
     int convertFrame(cv::Mat frame);
     void updateContent(std::string content, int index);

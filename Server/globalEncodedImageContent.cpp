@@ -7,7 +7,8 @@
 
 
 globalEncodedImageContent::globalEncodedImageContent() {
-    content_array.reserve(1024 * 8);
+    content_array.reserve(1024);
+    //mutex_array.reserve(1024);
 }
 
 void globalEncodedImageContent::updateContent(std::string content, int index) {
@@ -19,16 +20,20 @@ void globalEncodedImageContent::updateContent(std::string content, int index) {
 }
 
 std::string globalEncodedImageContent::getContent(int index) {
+    clock_t start = clock();
     std::string content("0");
     mutex.lock();
     content = content_array[index];
     mutex.unlock();
+    clock_t end = clock();
+    //std::cout << (double)(end - start) / CLOCKS_PER_SEC << std::endl;
     return content;
 }
 
 int globalEncodedImageContent::convertFrame(cv::Mat frame) {
     int x_cod = 0;
     int y_cod = 0;
+    clock_t start = clock();
     for (int y = 0; y < height_divide; ++y) {
         for (int x = 0; x < width_divide; ++x) {
             //clock_t start = clock();

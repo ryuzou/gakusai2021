@@ -6,16 +6,16 @@
 #include <iostream>
 #include <mutex>
 #include <thread>
-//#include <opencv2/opencv.hpp>
+#include <opencv2/opencv.hpp>
 #include <atomic>
 #include <vector>
 #include <cstring>
 
-//#include "raspicam/src/raspicam_cv.h"
+#include "raspicam/src/raspicam_cv.h"
 #include "udp.h"
 #include "tcp.h"
 #include "errorhandling.h"
-//#include "globalEncodedImageContent.h"
+#include "globalEncodedImageContent.h"
 
 std::atomic<bool> stop_tx_thread_flag(false);
 std::atomic<bool> stop_rx_thread_flag(false);
@@ -65,18 +65,19 @@ RxCommunicatorThread(std::string movementCode) {    // Thread for Receiving data
         strcpy(buff, sendedMovementCode);
         std::cout << buff << std::endl;
 
-        if (mq_send(mqd, buff, strlen(buff), 0) == -1) {
-            log.error("Message Queue send faild at RxCommunicatorThread, Exiting.");
-        }
+        //if (mq_send(mqd, buff, strlen(buff), 0) == -1) {
+        //    log.error("Message Queue send faild at RxCommunicatorThread, Exiting.");
+        //}
     }
     if (mq_close(mqd) == -1)
         log.error("Message queue close failed at RxCommunicatorThread, Exiting anyway.");
 }
-/**
-void TxCommunicatorThread(globalEncodedImageContent *globalEncodedImageContent) {    // Thread for Transferring data. Mainly transferring webcam image. UDP connection.
+
+void TxCommunicatorThread(
+        globalEncodedImageContent *globalEncodedImageContent) {    // Thread for Transferring data. Mainly transferring webcam image. UDP connection.
     logger log(LOGLEVEL_DEBUG);
     std::string encodedImageContent;
-    while (!recieve_addr_set_flag){}
+    while (!recieve_addr_set_flag) {}
     const char *tcp_server_addr = recieve_addr.c_str();
     log.debug(tcp_server_addr);
     udp udp;
@@ -89,28 +90,39 @@ void TxCommunicatorThread(globalEncodedImageContent *globalEncodedImageContent) 
             //std::cout << encodedImageContent << std::endl;
         }
     }
-}**/
+    while (1){}
+}
 
 int main(int argc, char *argv[]) {
     // Some initial stuff for opencv.
-    //raspicam::RaspiCam_Cv Camera;
-    //cv::Mat frame;
-    //std::vector<uchar> buff;
+    raspicam::RaspiCam_Cv Camera;
+    cv::Mat frame;
+    std::vector<uchar> buff;
+
 
     //setup
-    //Camera.set( cv::CAP_PROP_FORMAT, CV_8UC1 );
+    globalEncodedImageContent globalEncodedImageContent;
 
-    std::string movementCode(R"({"joystick": {"radius": 0, "stick_degree": 0}, "shot_button": 0, "reload_button": 0, "left": 0, "right": 0})");
+    Camera.set(cv::CAP_PROP_FRAME_WIDTH, globalEncodedImageContent.public_width);
+    Camera.set(cv::CAP_PROP_FRAME_HEIGHT, globalEncodedImageContent.public_height);
+    Camera.set(cv::CAP_PROP_BRIGHTNESS, 50);
+    Camera.set(cv::CAP_PROP_CONTRAST, 50);
+    Camera.set(cv::CAP_PROP_SATURATION, 50);
+    Camera.set(cv::CAP_PROP_GAIN, 50);
+    Camera.set(cv::CAP_PROP_FPS, 0);
 
-    //Initializing threads;
-    //globalEncodedImageContent globalEncodedImageContent;
+    std::string movementCode(
+            R"({"joystick": {"radius": 0, "stick_degree": 0}, "shot_button": 0, "reload_button": 0, "left": 0, "right": 0})");
+
 
     std::thread Rx(RxCommunicatorThread, movementCode);
-    //std::thread Tx(TxCommunicatorThread, &globalEncodedImageContent);
-    //std::thread Tx(TxCommunicatorThread, &globalEncodedImageContent);
+    std::thread Tx(TxCommunicatorThread, &globalEncodedImageContent);
     // Setting up camera streaming via opencv.
-    /**
-    if (!Camera.open()) {std::cerr<<"Error opening the camera"<<std::endl;return -1;}
+
+    if (!Camera.open()) {
+        std::cerr << "Error opening the camera" << std::endl;
+        return -1;
+    }
 
     double vidWidth = Camera.get(cv::CAP_PROP_FRAME_WIDTH);
     double vidHeight = Camera.get(cv::CAP_PROP_FRAME_HEIGHT);
@@ -118,6 +130,7 @@ int main(int argc, char *argv[]) {
     std::cout << "Video Height is " << vidHeight << std::endl;
     Camera.grab();
     Camera.retrieve(frame);
+    std::cout << frame.channels() << std::endl;
     std::vector<int> v;
     while (!frame.empty()) {
         globalEncodedImageContent.convertFrame(frame);
@@ -125,8 +138,5 @@ int main(int argc, char *argv[]) {
         Camera.retrieve(frame);
     }
     Camera.release();
-    return 0;
-     **/
-    while (1){}
     return 0;
 }
