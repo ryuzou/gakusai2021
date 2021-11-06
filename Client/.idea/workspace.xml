@@ -9,63 +9,9 @@
     <list default="true" id="ccf7ffb3-aa56-45e6-8ff2-f995d8e65bfa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/3.20.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/3.20.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/3.20.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/3.20.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/3.20.2/CompilerIdC/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/3.20.2/CompilerIdC/a.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/3.20.2/CompilerIdCXX/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/3.20.2/CompilerIdCXX/a.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/CMakeError.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator.dir/CXX.includecache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator.dir/depend.internal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator2.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator2.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator2.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator2.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator2.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator2.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Communicator2.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Server.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Server.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Server.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Server.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Server.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Server.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Server.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Server.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Server.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Server.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Server.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/Server.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/Server.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-debug/Server.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/3.20.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/3.20.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/3.20.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/3.20.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/3.20.2/CompilerIdC/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/3.20.2/CompilerIdC/a.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/3.20.2/CompilerIdCXX/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/3.20.2/CompilerIdCXX/a.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Server.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Server.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Server.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Server.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Server.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Server.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Server.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Server.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Server.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Server.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Server.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/Server.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/Server.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/Server.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/cmake-build-release/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/cmake-build-release/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/globalEncodedImageContent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/globalEncodedImageContent.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/globalEncodedImageContent.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/globalEncodedImageContent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gakusai2021.py" beforeDir="false" afterPath="$PROJECT_DIR$/../gakusai2021.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +83,7 @@
       <workItem from="1636049836210" duration="715000" />
       <workItem from="1636133170330" duration="7266000" />
       <workItem from="1636143035357" duration="43000" />
-      <workItem from="1636145928696" duration="1350000" />
+      <workItem from="1636145928696" duration="8583000" />
     </task>
     <task id="LOCAL-00001" summary="joystickの処理追加">
       <created>1636014758600</created>
@@ -153,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636014795613</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="いろいろ更新">
+      <created>1636185870948</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1636185870948</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,7 +114,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="joystickの処理追加" />
-    <option name="LAST_COMMIT_MESSAGE" value="joystickの処理追加" />
+    <MESSAGE value="いろいろ更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="いろいろ更新" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Client$main.coverage" NAME="main Coverage Results" MODIFIED="1636037942337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

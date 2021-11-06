@@ -8,23 +8,22 @@
 
 globalEncodedImageContent::globalEncodedImageContent() {
     content_array.reserve(1024);
-    //mutex_array.reserve(1024);
 }
 
 void globalEncodedImageContent::updateContent(std::string content, int index) {
-    mutex.lock();
+    while (pointer_of_writing_elem == &content_array[index]){}
+    pointer_of_reading_elem == &content_array[index];
     content_array[index] = content;
-    //std::cout << content_array[index] << "\n" << index << std::endl;
-    mutex.unlock();
-    //std::cout << index << std::endl;
+    pointer_of_reading_elem == nullptr;
 }
 
 std::string globalEncodedImageContent::getContent(int index) {
     clock_t start = clock();
     std::string content("0");
-    mutex.lock();
+    while (pointer_of_reading_elem == &content_array[index]){}
+    pointer_of_writing_elem == &content_array[index];
     content = content_array[index];
-    mutex.unlock();
+    pointer_of_writing_elem == nullptr;
     clock_t end = clock();
     //std::cout << (double)(end - start) / CLOCKS_PER_SEC << std::endl;
     return content;

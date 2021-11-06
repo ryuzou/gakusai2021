@@ -3,16 +3,18 @@ import json
 import math
 import threading
 from socket import socket, AF_INET, SOCK_DGRAM, SOCK_STREAM
+from multiprocessing import Process
+from multiprocessing import Pipe
 import time
 import cv2
 import numpy as np
 import pygame
 from pygame import locals
 
-gameJson = None
+from concurrent.futures import ThreadPoolExecutor
 
 
-def update_controller():
+def update_controller(joystick_data):
     gameDict = {"joystick": {"radius": 0, "stick_degree": 0}, "shot_button": 0, "reload_button": 0, "left": 0,
                 "right": 0}
 
@@ -80,11 +82,10 @@ def update_controller():
             gameDict["shot_button"] = shot_button
             gameDict["left"] = left
             gameDict["right"] = right
-            lock.acquire()
-            gameJson = json.dumps(gameDict)
-            lock.release()
+            joystick_data.updateData(gameDict)
 
-def status_observer():
+def imageGetter():
+
     baseImg = np.zeros((480, 640, 3)).astype('int')
     baseImg += [0, 0, 255][::-1]  # RGBで青指定
 
@@ -104,8 +105,11 @@ def status_observer():
 
     buff = 1034 * 64
 
+    imagePartDict = {}
+
+    initialised_flag = False
+
     while True:
-        data = bytes()
         data, _ = socket_udp.recvfrom(buff)
         data = data.decode()
 
@@ -113,43 +117,73 @@ def status_observer():
         x_cod = int(header.split("_")[0])
         y_cod = int(header.split("_")[1])
 
-        x_len = int(header.split("_")[2])
-        y_len = int(header.split("_")[3])
+        if initialised_flag == False:
+            x_len = int(header.split("_")[2])
+            y_len = int(header.split("_")[3])
+            initialised_flag = True
+
 
         timestamp = int(header.split("_")[4])
+        xycodOD = str(x_cod) + str(y_cod)
+
+        runFlag = True
+        if xycodOD in imagePartDict:
+            if imagePartDict[xycodOD] >= timestamp:
+                runFlag = False
+            else:
+                imagePartDict[xycodOD] = timestamp
+        else:
+            imagePartDict[xycodOD] = timestamp
 
         #print(data)
 
-        img_data = base64.b64decode(data.split("&")[1])
-        nparr = np.frombuffer(img_data, np.uint8)
-        img_decode = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        if runFlag:
+            img_data = base64.b64decode(data.split("&")[1])
+            nparr = np.frombuffer(img_data, np.uint8)
+            img_decode = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-        baseImg[y_cod:(y_cod + y_len), x_cod:(x_cod + x_len)] = img_decode
-        cv2.imshow("img", baseImg)
+            baseImg[y_cod:(y_cod + y_len), x_cod:(x_cod + x_len)] = img_decode
+            cv2.imshow("img", baseImg)
         if cv2.waitKey(1) != -1:
             break
 
 
-def json_sender():
-    IPADDR = "192.168.0.8"
+def json_sender(joystick_data):
+    IPADDR = "192.168.0.3"
     PORT_TCP = 8000
     socket_tcp = socket(AF_INET, SOCK_STREAM)
     socket_tcp.connect((IPADDR, PORT_TCP))
     gameDict = {"joystick": {"radius": 0, "stick_degree": 0}, "shot_button": 0, "reload_button": 0, "left": 0,
                 "right": 0}
-    baseGameJson = json.dumps(gameDict)
+    baseGameJson = joystick_data.getData()
     global gameJson
     while True:
         socket_tcp.send(((baseGameJson + '\n').encode("utf-8")))
         print(baseGameJson)
-        lock.acquire()
-        baseGameJson = gameJson
-        lock.release()
+        baseGameJson = joystick_data.getData()
 
-lock = threading.Lock()
-thread_1 = threading.Thread(target=update_controller)
-thread_2 = threading.Thread(target=status_observer)
-thread_3 = threading.Thread(target=json_sender)
-thread_1.start()
-thread_2.start()
-thread_3.start()
+class JoystickData:
+    lock = threading.Lock()
+    gameJson = json.dumps({"joystick": {"radius": 0, "stick_degree": 0}, "shot_button": 0, "reload_button": 0, "left": 0, "right": 0})
+
+    def updateData(self, dataDict):
+        dataJson = json.dumps(dataDict)
+        with self.lock:
+            self.gameJson = dataJson
+
+    def getData(self):
+        with self.lock:
+            ret = self.gameJson
+        return ret
+
+def main():
+    joystick_data = JoystickData()
+    with ThreadPoolExecutor() as executor:
+        thread1 = executor.submit(update_controller, joystick_data)
+        thread2 = executor.submit(json_sender, joystick_data)
+        thread3 = executor.submit(imageGetter)
+
+        features = [thread1, thread2, thread3]
+
+if __name__ == '__main__':
+    main()

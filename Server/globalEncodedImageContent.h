@@ -34,17 +34,18 @@ private:
     static const int y_len = height / height_divide;
     static const int max_index = width_divide * height_divide - 1;    // counting by 0 start
 
-    std::string _content;
-    std::mutex _mutex;
-    //std::vector<std::mutex> mutex_array;
     std::vector<std::string> content_array;
     std::mutex mutex;
+
+    std::atomic<std::vector<std::string>::pointer> pointer_of_reading_elem{ nullptr };
+    std::atomic<std::vector<std::string>::pointer> pointer_of_writing_elem{ nullptr };
 
     int index_now = 0;
 
 public:
     int public_height = height;
     int public_width = width;
+
     globalEncodedImageContent();
     int convertFrame(cv::Mat frame);
     void updateContent(std::string content, int index);

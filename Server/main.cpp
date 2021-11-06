@@ -73,8 +73,7 @@ RxCommunicatorThread(std::string movementCode) {    // Thread for Receiving data
         log.error("Message queue close failed at RxCommunicatorThread, Exiting anyway.");
 }
 
-void TxCommunicatorThread(
-        globalEncodedImageContent *globalEncodedImageContent) {    // Thread for Transferring data. Mainly transferring webcam image. UDP connection.
+void TxCommunicatorThread(globalEncodedImageContent *globalEncodedImageContent) {    // Thread for Transferring data. Mainly transferring webcam image. UDP connection.
     logger log(LOGLEVEL_DEBUG);
     std::string encodedImageContent;
     while (!recieve_addr_set_flag) {}
@@ -83,14 +82,16 @@ void TxCommunicatorThread(
     udp udp;
     udp.send_setup(tcp_server_addr, 8092);
     while (!stop_tx_thread_flag) {
+        clock_t start = clock();
         encodedImageContent = globalEncodedImageContent->getNextContent();
         const int content_size = encodedImageContent.length();
         if (!(encodedImageContent.empty())) {  // Check if there is a worthwhile content.
             udp.send(encodedImageContent);  // Send encoded image via udp.
             //std::cout << encodedImageContent << std::endl;
         }
+        clock_t end = clock();
+        //std::cout << (double)(end - start) / CLOCKS_PER_SEC << std::endl;
     }
-    while (1){}
 }
 
 int main(int argc, char *argv[]) {
